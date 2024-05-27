@@ -1,0 +1,84 @@
+.about-card{
+    display: flex;
+    flex-direction: column;
+    grid-gap: 25px;
+    height: 100%;
+   
+
+    &__title{
+        font-family: var(--second-family);
+        display: inline-flex;
+        padding-left: 3px;
+
+        &::before{
+            content: counter(li, decimal-leading-zero);
+            order: -2;
+        }
+
+        &::after{
+            margin-right: 8px;
+            order: -1;
+            content: '.';
+            color: rgba(var(--cl-c),1.0);
+        }
+    }  
+
+    &__bottom{
+    
+        display: flex;
+        align-items: flex-end;
+        position: relative;
+    }
+
+    p{
+        flex-grow: 1;
+
+        @include tablet{
+            @include for-small-tablet{
+            max-width: 82%;
+        }
+        }
+
+        @include small-tablet{
+            @include for-mobile{
+                max-width: 88%;
+            }
+        }
+
+        @include mobile{
+            max-width: 82%;
+        }
+    }
+
+    &__count{
+        position: absolute;
+        right: 0;
+        top: 0;
+        background: rgba(var(--bg-c),1.0);
+        padding: 2px 17px 9px;
+        min-height: 63px;
+        display: inline-flex;
+        align-items: center;
+        font-family: var(--second-family);
+        font-weight: 700;
+        font-size: 40px;
+        text-transform: uppercase;
+
+        &::before{
+            content: counter(li, decimal-leading-zero);
+        }
+
+        &::after{
+            content: '.';
+            color: rgba(var(--cl-c),1.0);
+        }
+    }
+
+    &__image{
+        display: flex;
+
+        img,picture{
+            width: 100%;
+        }
+    }
+}

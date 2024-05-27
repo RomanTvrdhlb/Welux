@@ -1,0 +1,31 @@
+.main-nav {
+  display: flex;
+  align-items: center;
+  grid-gap: clamp(15px, 2.0513vw, 24px);
+  position: relative;
+  padding: 18px 24px;
+  width: fit-content;
+  border-radius: 99px;
+  background-color: rgba(var(--bg-i),1.0);
+  @include gradient-border(var(--gr-h), 1px);
+  transition: all .45s cubic-bezier(.6,.6,0,1);
+
+  &__item{
+    display: flex;
+  }
+
+  &__link {
+    color: rgba(var(--cl-c),1.0);
+    font-size: 14px;
+    transition: all 0.4s;
+    font-weight: 400;
+    white-space: nowrap;
+    &.active {
+      color: rgba(var(--cl-a),1.0);
+    }
+
+    &:hover {
+      color: rgba(var(--cl-a),1.0);
+    }
+  }
+}

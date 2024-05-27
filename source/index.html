@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="Ru">
+@include('partials/head.html')
+
+<body>
+  @include('partials/header.html')
+
+  <main>
+
+    <section class="first-section circles">
+      <div class="container">
+        <div class="first-section__box">
+          <div class="first-section__inner">
+            <div class="main-top">
+              <span class="main-top__subtitle">Earn up to 5% everyday</span>
+              <h1 class="main-top__title title title--mode">Cloud<br>
+                <img width="115" height="71" src="./img/sprite/icon1.svg" alt="image"><span
+                  class="gradient-text">mining</span><br>
+                <b>service</b>
+              </h1>
+
+              <div class="main-top__bottom">
+                <button class="main-btn">Start now
+                  <svg width='19' height='14'>
+                    <use href='img/sprite/sprite.svg#arrow-r'></use>
+                  </svg>
+                </button>
+
+                <div class="main-top__bonus">
+                  <img width="31" height="31" src="./img/sprite/gift.svg" alt="image">
+                  <span class="main-top__bonus-text">Sign up and get $4,5 bonus</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="first-section__image">
+              <picture>
+                <video width='831' height='766' src="./img/index/girl.mp4" playsinline muted autoplay loop></video>
+              </picture>
+            </div>
+          </div>
+
+          <ul class="info-list">
+            <li class="info-list__item">
+              <div class="info-list__card">
+                <span class="info-list__icon">
+                  <img width="24" height="24" src="./img/sprite/activity.svg" alt="image">
+                </span>
+                Cloud technologies with AI
+              </div>
+            </li>
+            <li class="info-list__item">
+              <div class="info-list__card">
+                <span class="info-list__icon">
+                  <img width="24" height="24" src="./img/sprite/globe.svg" alt="image">
+                </span>
+                Support 24/7
+              </div>
+            </li>
+          </ul>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="about-section">
+      <div class="container">
+        <div class="about-section__box">
+          <div class="main-top">
+            <span class="main-top__logo">
+              <img width='50' height='41' src="img/logo.svg" alt="logo">
+            </span>
+            <h2 class="title">welux<br>
+              <b>developer</b>
+            </h2>
+          </div>
+
+          <ul class="about-list">
+            <li class="about-list__item">
+              <div class="about-card">
+                <span class="about-card__title subtitle">LIGHT</span>
+                <p>Architecture exists because of light. The need to capture, understand and play the light is one of
+                  the keys to the success of our project.
+                </p>
+
+                <div class="about-card__bottom">
+                  <span class="about-card__count"></span>
+                  <div class="about-card__image">
+                    <picture>
+                      <source type='image/webp' srcset='img/index/img1.webp'>
+                      <img width='278' height='278' src='img/index/img1.png' alt='image'>
+                    </picture>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="about-list__item">
+              <div class="about-card">
+                <span class="about-card__title subtitle">nature</span>
+                <p>The garden is the mediator between the architecture and the place. The essence of living in nature.
+                </p>
+
+                <div class="about-card__bottom">
+                  <span class="about-card__count"></span>
+                  <div class="about-card__image">
+                    <picture>
+                      <source type='image/webp' srcset='img/index/img2.webp'>
+                      <img width='278' height='278' src='img/index/img2.png' alt='image'>
+                    </picture>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="about-list__item">
+              <div class="about-card">
+                <span class="about-card__title subtitle">materials</span>
+                <p>Natural materials with different textures react to light creating spaces that we finally feel when we
+                  create architecture.
+                </p>
+
+                <div class="about-card__bottom">
+                  <span class="about-card__count"></span>
+                  <div class="about-card__image">
+                    <picture>
+                      <source type='image/webp' srcset='img/index/img3.webp'>
+                      <img width='278' height='278' src='img/index/img3.png' alt='image'>
+                    </picture>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="about-list__item">
+              <div class="about-card">
+                <span class="about-card__title subtitle">Place</span>
+                <p>Natural materials with different textures react to light creating spaces that we finally feel when we
+                  create architecture.
+
+                </p>
+
+                <div class="about-card__bottom">
+                  <span class="about-card__count"></span>
+                  <div class="about-card__image">
+                    <picture>
+                      <source type='image/webp' srcset='img/index/img4.webp'>
+                      <img width='278' height='278' src='img/index/img4.png' alt='image'>
+                    </picture>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <!-- <div class="preloader">
+    <div id="loader"></div>
+  </div> -->
+  @include('partials/footer.html')
+  @include('partials/modals.html')
+</body>
+<script src="js/main.js"></script>
+
+</html>

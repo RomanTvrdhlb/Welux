@@ -1,0 +1,37 @@
+.main-top {
+  width: 100%;
+  display: flex;
+
+  @include for-mobile{
+    grid-gap: clamp(40px, 6.929vw, 81px);
+  }
+
+  @include mobile{
+    grid-gap: 10px;
+  }
+
+  &__logo{
+    width: 50px;
+    height: 41px;
+
+    img,picture,svg{
+      width: 100%;
+      height: 100%;
+    }
+
+    @include mobile{
+      display: none;
+    }
+  }
+
+  &::before{
+      font-family: var(--second-family);
+      font-size: 21px;
+      text-transform: uppercase;
+      flex-grow: 1;
+      text-align: end;
+      counter-increment: section;
+      content: counter(section, decimal-leading-zero);
+      order: 3;
+  }
+}
