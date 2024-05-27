@@ -1,10 +1,10 @@
 .header {
-  padding: 22px 0;
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: 0;
+  // position: fixed;
+  // left: 0;
+  // right: 0;
+  // top: 0;
   z-index: 90;
+  padding: 96px 0;
 
   @include tablet{
     background-color: rgba(var(--bg-f),1);
@@ -14,389 +14,85 @@
     padding: 16px 0 12px;
   }
 
-  &.sticky {
-    @include for-tablet{
-    .main-nav {
-      backdrop-filter: initial;
-      background-color: transparent;
-      &::after {
-        opacity: 1;
-      }
-    }
-    .logo {
-      transform: translateX(-12px);
-      opacity: 0;
-      visibility: hidden;
-    }
+  // &.sticky {
+  //   @include for-tablet{
+  //   .main-nav {
+  //     backdrop-filter: initial;
+  //     background-color: transparent;
+  //     &::after {
+  //       opacity: 1;
+  //     }
+  //   }
+  //   .logo {
+  //     transform: translateX(-12px);
+  //     opacity: 0;
+  //     visibility: hidden;
+  //   }
 
-    .header__btns{
-      transform: translateX(12px);
-      opacity: 0;
-      visibility: hidden;
-    }
-  }
+  //   .header__btns{
+  //     transform: translateX(12px);
+  //     opacity: 0;
+  //     visibility: hidden;
+  //   }
+  // }
 
-  @include tablet{
-    box-shadow: 0 10px 20px 0 #0b0a17;
-  }
-  }
-
-  .main-nav {
-    &::after {
-      background: rgba(var(--bg-j), .8);
-      box-shadow: 0 12px 32px #05051e66, 0 -8px 32px #e2e8ff1f inset;
-      position: absolute;
-      content: "";
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      border-radius: inherit;
-      backdrop-filter: blur(4px);
-      z-index: -1;
-      opacity: 0;
-      transition: opacity .35s cubic-bezier(.6,.6,0,1);
- 
-    }
-  }
+  // @include tablet{
+  //   box-shadow: 0 10px 20px 0 #0b0a17;
+  // }
+  // }
 
   &__inner {
     display: grid;
     align-items: center;
+    position: relative;
 
-    @include for-laptop {
-      grid-template-columns: 255px 1fr 255px;
-      grid-gap: clamp(10px, 2.6vw, 39px);
-      .main-nav {
-        justify-self: center;
-      }
-    }
-
-    @include laptop {
       @include for-tablet {
         grid-gap: 20px;
         grid-template-columns: auto 1fr;
-        height: 50px;
-        .main-nav {
+      
+        .logo {
           position: absolute;
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
         }
       }
-    }
+    
 
     @include tablet {
+      grid-template-columns: auto 1fr auto;
       grid-gap: clamp(15px, 1.953vw, 20px);
       .main-nav {
         display: none;
       }
-
-     
-        grid-template-columns: auto 1fr auto;
-  
+    
     }
 
-    @include ios {
-      .logo {
-        width: 139px;
-      }
-    }
   }
 
   &__btns {
-    transition: transform 0.45s cubic-bezier(0.6, 0.6, 0, 1),
-      opacity 0.45s cubic-bezier(0.6, 0.6, 0, 1);
-   
       display: flex;
       align-items: center;
       justify-content: flex-end;
-      grid-gap: 8px;
+      grid-gap: clamp(20px, 2.3097vw, 27px);
 
-    .main-btn {
-      font-family: var(--third-family);
-      font-weight: 700;
-      font-size: 14px;
-      @include for-laptop {
-        min-width: 131px;
-      }
-      @include laptop {
-        @include for-small-tablet {
-          min-width: 95px;
-        }
-      }
-      @include for-small-tablet {
-        height: 50px;
-      }
-      @include small-tablet {
-        min-width: clamp(121px, 11.1966vw, 131px);
-        height: clamp(48px, 4.2735vw, 50px);
-        font-size: clamp(12px, 1.1966vw, 14px);
-      }
 
-      @include mobile{
-        font-size: 0;
-        width: 44px;
-        height: 44px;
-        border-radius: 50%;
-        padding: 5px;
-        min-width: initial;
-  
-        svg{
-          width: 24px;
-          height: auto;
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-        }
+      .transparent-btn{
+        margin-right: clamp(27px, 4.0205vw, 47px);
       }
-    }
-
-    @include laptop {
-        justify-self: end;
-    }
-
-    * > {
-      @include for-mobile{
-        svg{
-          display: none;
-        }
-      }
-      
-    }
-
-    .header__btn{
-      @include mobile{
-        font-size: 0;
-        width: 44px;
-        height: 44px;
-        border-radius: 50%;
-        padding: 5px;
-  
-        svg{
-          width: 20px;
-          height: auto;
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-        }
-      }
-    }
   }
 
-  &__btn {
-    font-family: var(--third-family);
-    font-weight: 700;
-    transition: all 0.3s;
-    background: var(--gr-g);
-    padding: 18px 39px;
-    border-radius: 99px;
-    flex-shrink: 0;
-    @include gradient-border(var(--gr-h), 1px);
-    z-index: 1;
-    
-    @include laptop {
-      @include for-tablet {
-        padding: 18px 25px;
-      }
+  &__btn{
+    svg{
+      transition: all .4s;
     }
 
-    @include for-small-tablet {
-      font-size: 14px;
+    &:hover{
+      color: rgba(var(--cl-c),1.0);
     }
 
-    @include small-tablet {
-      font-size: clamp(12px, 1.1966vw, 14px);
-    }
-
-    &::after{
-      position: absolute;
-      content: '';
-      inset: 0;
-      transition: all .3s;
-      background: var(--gr-z);
-      border-radius: inherit;
-      z-index: -2;
-      opacity: 0;
-      pointer-events: none;
-      visibility: hidden;
-  }
-
-  span{
-      position: absolute;
-      content: '';
-      inset: 0;
-      transition: all .3s;
-      background: var(--gradient-d);
-      border-radius: inherit;
-      z-index: -1;
-      opacity: 0;
-      pointer-events: none;
-      visibility: hidden;
-  }
-
-  &:hover{
-     &::after{
-      opacity: 1;
-      visibility: visible;
-     }
-  }
-
-  &:focus{
-      &::after{
-          opacity: 0;
-          visibility: hidden;
-      }
-      span{
-          visibility: visible;
-          opacity: 1;
-         }
-  }
-
-  &:disabled{
-      opacity: 0.4;
-  }
-
-  &.login{
-    grid-gap: 10px;
-    justify-content: center;
-    align-items: center;
-    width: fit-content;
-    justify-self: end;
-    height: 50px;
-
-    @include mobile{
-      height: 45px;
-    }
-  }
-  }
-
-  &__user{
-    height: 100%;
-    display: flex;
-    align-items: center;
-    grid-gap: 10px;
-    padding-left: 37px;
-    position: relative;
-    z-index: 1;
-    &-image{
-      width: 35px;
-      height: 35px;
-      overflow: hidden;
-      border-radius: 12px;
-      flex-shrink: 0;
-    }
-
-    &::before{
-      position: absolute;
-      content: '';
-      width: 1px;
-      height: calc(100% + 35px);
-      background-color: var(--br-g);
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 1;
-      pointer-events: none;
-    }
-
-    @include small-tablet{
-      justify-self: end;
-      &::before{
-        display: none;
-      }
-    }
-  }
-
-  &__name{
-    font-family: var(--second-family);
-    font-weight: 700;
-    font-size: 14px;
-  }
-
-  .logo {
-    transition: transform 0.45s cubic-bezier(0.6, 0.6, 0, 1),
-      opacity 0.45s cubic-bezier(0.6, 0.6, 0, 1);
-  }
-
-  &.dash{
-    background-color: rgba(var(--bg-f),1.0);
-    overflow: hidden;
-    padding: 0;
-    border-bottom: 1px solid var(--br-g);
-    .header__inner{
-     
-      padding: 19px 0 16px;
-      grid-gap: clamp(20px, 3.9316vw, 46px);
-
-      @include for-tablet{
-        grid-template-columns: 237px 1fr auto;
-      }
-
-      @include tablet{
-        grid-template-columns:125px 1fr auto auto;
-      }
-
-      @include for-small-tablet{
-        height: 80px;
-      }
-
-      @include small-tablet{
-        grid-template-columns: auto 1fr auto;
-
-        .search{
-          display: none;
-        }
-      }
-    }
-
-    .logo{
-      transform: none;
-      opacity: 1;
-      visibility: visible;
-      position: relative;
-      height: 100%;
-      display: flex;
-      align-items: center;
-
-      &::before{
-        position: absolute;
-        content: '';
-        width: 1px;
-        height: calc(100% + 35px);
-        background-color: var(--br-g);
-        right: 0;
-        top: 50%;
-        transform: translateY(-50%);
-        z-index: 1;
-        pointer-events: none;
-      }
-
-      @include small-tablet{
-        width: fit-content;
-        &::before{
-          display: none;
-        }
-      }
-    }
-  }
-
-  .main-btn{
-
-    &.login{
-      justify-self: end;
-      height: 50px;
-      width: fit-content;
-      font-size: 14px;
-      font-family: var(--second-family);
-      font-weight: 700;
-      padding: 15px clamp(25px, 17.36px, 36px);
-      @include mobile{
-        height: 45px;
-        border-radius: 999px;
-      }
+    &:disabled{
+      opacity: .4;
     }
   }
 }

@@ -1,0 +1,27 @@
+.default-section{
+    padding-bottom: clamp(80px, 11.2917vw, 132px);
+    overflow: hidden;
+
+    &__box{
+        display: flex;
+        flex-direction: column;
+        grid-gap: 15px;
+    }
+
+    &__image{
+        margin-top: 15px;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        max-height: 688px;
+
+        img,picture{
+            width: 100%;
+            object-position: bottom center;
+        }
+
+        @include mobile{
+            min-height: 341px;
+        }
+    }
+}
