@@ -277,7 +277,7 @@ fieldset {
   transform: translate(-50%, -50%);
   width: 100%;
   height: 100%;
-  background-color: rgba(var(--bg-r),1.0);
+  background-color: rgba(var(--bg-g),1.0);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -286,6 +286,11 @@ fieldset {
   visibility: visible;
   transition: all 0.5s;
   pointer-events: none;
+
+  img,picture{
+    width: clamp(200px, 18.9906vw, 222px);
+    height: auto;
+  }
 
   &.loaded{
     opacity: 0;

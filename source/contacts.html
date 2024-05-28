@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="Ru">
+@include('partials/head.html')
+
+<body>
+  @include('partials/header.html')
+
+  <main>
+
+    <section class="first-section first-section--contacts">
+      <div class="first-section__bg">
+        <picture>
+          <source type='image/webp' srcset='img/contacts/bg.webp'>
+          <img width='1512' height='540' src='img/contacts/bg.png' alt='image'>
+        </picture>
+      </div>
+      <div class="container">
+        <div class="first-section__wrapper">
+          <h1 class="title">contacts:
+          </h1>
+          <p>ARK offers its customers comprehensive services ranging from the initial concept to the overall
+            implementation of each project. Our work strategy comprises architectural builder and development, project
+            management, architectural design, interior design and landscaping.</p>
+
+          <ul class="contacts">
+            <li class="contacts__item">
+              <span class="contacts__title">email:</span>
+              <a href="mailto:architecture@verticite.ch" class="contacts__link">architecture@verticite.ch</a>
+            </li>
+            <li class="contacts__item">
+              <span class="contacts__title">ADDRESS:</span>
+              <a href="https://www.google.com/maps/place/Av.+Eug%C3%A8ne-Pittard+14,+1206+Gen%C3%A8ve,+Suisse/@46.1912566,6.161538,17z/data=!3m1!4b1!4m6!3m5!1s0x478c7ab61031fa9b:0xf0e988a6d9e66cf4!8m2!3d46.1912566!4d6.161538!16s%2Fg%2F11f_cpp8fz?hl=fr&entry=ttu"
+                class="contacts__link">Avenue Eugène-Pittard 14-16, 1206 Geneva, Switzerland</a>
+            </li>
+            <li class="contacts__item">
+              <span class="contacts__title">social media:</span>
+              <div class="contacts__links">
+                <a href="#" class="contacts__link">Facebook</a>
+                <a href="#" class="contacts__link">instagram</a>
+                <a href="#" class="contacts__link">linkedin</a>
+              </div>
+            </li>
+          </ul>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <!-- <div class="preloader">
+    <img width="222" height="180" src="img/logo.svg" alt="logo">
+  </div> -->
+  @include('partials/footer.html')
+  @include('partials/modals.html')
+</body>
+<script src="js/main.js"></script>
+
+</html>

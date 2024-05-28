@@ -1,6 +1,42 @@
 .default-section {
   overflow: hidden;
 
+  &__project{
+    display: grid;
+    grid-template-columns: .65fr 1fr;
+    grid-gap: 20px;
+    align-items: center;
+    padding-bottom: 140px;
+  }
+
+  &__title{
+    max-width: 350px;
+    font-weight: 200;
+    font-size: 35px;
+    line-height: 129%;
+    text-transform: uppercase;
+
+    b{
+      font-weight: 400;
+    }
+  }
+
+  &__content{
+    display: grid;
+    grid-template-columns: 335px auto;
+    align-items: center;
+    grid-gap: clamp(30px, 4.2772vw, 50px);
+    p{
+      max-width: 273px;
+    }
+  }
+
+  &__text{
+    grid-column: span 2;
+    justify-self: center;
+    max-width: 326px !important;
+  }
+
   &__box {
     display: flex;
     flex-direction: column;
@@ -30,6 +66,32 @@
     @include mobile {
       min-height: 341px;
     }
+  }
+
+  &__picture {
+    width: clamp(311px, 28.657vw, 335px);
+    height: 100%;
+    display: flex;
+    position: relative;
+    z-index: -1;
+
+    &::before{
+      content: '';
+      position: absolute;
+      z-index: -1;
+      width: clamp(414px, 36.9547vw, 432px);
+      height: clamp(528px, 48.2464vw, 564px);
+      background-color: rgba(var(--bg-c),1.0);
+      pointer-events: none;
+      top: 15%;
+      right: -68%;
+    }
+
+    img,
+    picture {
+      width: 100%;
+    }
+ 
   }
 
   &__user {

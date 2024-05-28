@@ -22,6 +22,97 @@
     }
   }
 
+  &__wrapper{
+    display: grid;
+    grid-template-columns: 1fr 377px;
+    grid-gap: 0 20px;
+
+    p{
+      line-height: 200%;
+      margin-top: 61px;
+    }
+
+    .contacts{
+      margin-top: -8px;
+    }
+  }
+
+  &__content{
+    display: grid;
+    grid-template-columns: 1fr 483px;
+    justify-items: end;
+    grid-gap: clamp(30px, 5.2181vw, 61px) clamp(30px, 4.2772vw, 50px);
+    padding-bottom: clamp(30px, 5.2181vw, 61px);
+
+    @include mobile{
+      padding-bottom: 100px;
+    }
+
+    .title{
+      grid-column: span 2;
+      justify-self: start;
+    }
+
+    .text{
+      max-width: 377px;
+      font-size: clamp(20px, 1.7964vw, 21px);
+
+      @include small-tablet{
+        line-height: 140%;
+      }
+
+      &:nth-child(3){
+        max-width: 483px;
+
+        @include mobile{
+          margin-top: 11px;
+        }
+      }
+    }
+
+    .main-link{
+      @include for-mobile{
+        display: none;
+      }
+    }
+  }
+
+  &__image{
+    width: 100%;
+    height: clamp(380px, 51.8392vw, 606px);
+
+    img,picture{
+      width: 100%;
+      height: 100%;
+      object-position: bottom center;
+    }
+  }
+
+  &__bg{
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    opacity: .2;
+    width: 100%;
+
+    @include for-small-tablet{
+      height: Min(47.4765vw, 555px);
+    }
+
+    @include small-tablet{
+      height: 569px;
+    }
+
+    img,picture{
+      width: 100%;
+      height: 100%;
+      object-position: bottom center;
+    }
+
+    
+  }
+
   &__aside{
     position: absolute;
     bottom: 134px;
@@ -126,6 +217,41 @@
 
     @include mobile{
       line-height: 131%;
+    }
+  }
+
+  &--about{
+    margin-bottom: 0;
+
+    @include for-tablet{
+      padding-top: calc(var(--header-height) - 27px);
+    }
+   
+    @include for-mobile{
+      padding-bottom: 113px;
+    }
+
+    @include mobile{
+      padding-bottom: 115px;
+    }
+  }
+
+  &--contacts{
+    margin-bottom: 0;
+    padding-bottom: 140px;
+    
+    .first-section__bg{
+      @include for-small-tablet{
+        height: Min(46.1933vw, 540px);
+      }
+    
+      @include small-tablet{
+        height: 613px;
+      }
+    }
+
+    @include for-tablet{
+      padding-top: calc(var(--header-height) - 27px);
     }
   }
 }

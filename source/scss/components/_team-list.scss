@@ -1,0 +1,31 @@
+.team-list{
+    grid-gap: 35px clamp(16px, 1.7109vw, 20px);
+
+    @include for-small-tablet{
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    @include for-mobile{
+        display: grid;
+    }
+
+    @include small-tablet{
+        @include for-mobile{
+        grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @include mobile{
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__item{
+        @include mobile{
+            display: flex;
+            &:nth-child(even){
+                justify-content: flex-end;
+            }
+        }
+    }
+}

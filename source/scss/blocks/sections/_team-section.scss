@@ -1,0 +1,16 @@
+.team-section{
+    padding-bottom: clamp(80px, 9.6664vw, 113px);
+
+    &__box{
+        display: flex;
+        flex-direction: column;
+
+        @include for-mobile{
+            grid-gap: 27px;
+        }
+
+        @include mobile{
+            grid-gap: 38px;
+        }
+    }
+}

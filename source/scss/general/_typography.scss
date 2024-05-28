@@ -12,7 +12,9 @@
   }
 
   &--mode{
-    line-height: 110%;
+    @include for-mobile{
+      line-height: 110%;
+    }
 
     b{
       font-weight: 300;
@@ -21,6 +23,14 @@
 
   &--big{
     font-size: clamp(55px, 10.6929vw, 125px);
+  }
+}
+
+.blue-text{
+  color: rgba(var(--cl-f),1.0);
+
+  b{
+    color: rgba(var(--cl-a),1.0);
   }
 }
 

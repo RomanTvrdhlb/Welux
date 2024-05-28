@@ -16,15 +16,19 @@
   // --container-width-mode: calc(var(--content-width-mode) + (var(--container-offset) * 2));
 
   // --------------- default JS variables ---------------
-  --header-height: 94px;
+  --header-height: 234px;
 
-  // @include small-tablet{
-  //   --header-height: 92px;
-  // }
+   @include tablet{
+    --header-height: 196px;
+  }
 
-  // @include mobile{
-  //   --header-height: 72px;
-  // }
+  @include small-tablet{
+    --header-height: 176px;
+  }
+
+  @include mobile{
+    --header-height: 168px;
+  }
 
   // --------------- default scroll variables ---------------
   --scrollbar-thumb: #252560;
@@ -50,7 +54,7 @@
   --cl-c: #{HexToRGB(#C1A17B)}; // rgba(var(--cl-c),1.0);
   --cl-d: #{HexToRGB(#040416)}; // rgba(var(--cl-d),1.0);
   --cl-e: #{HexToRGB(#8B8BA6)}; // rgba(var(--cl-e),1.0);
-  // --cl-f: #{HexToRGB(#0b0a17)}; // rgba(var(--cl-f),1.0);
+  --cl-f: #{HexToRGB(#13132f)}; // rgba(var(--cl-f),1.0);
   // --cl-g: #{HexToRGB(#f0f3f7)}; // rgba(var(--cl-g),1.0);
   // --cl-h: #{HexToRGB(#898fb2)}; // rgba(var(--cl-h),1.0);
   // --cl-i: #{HexToRGB(#5d5d75)}; // rgba(var(--cl-i),1.0);
@@ -68,9 +72,9 @@
   --bg-d: #{HexToRGB(#C1A17B)}; // rgba(var(--bg-d),1.0);
   --bg-e: #{HexToRGB(#9f805c)}; // rgba(var(--bg-e),1.0);
   --bg-f: #{HexToRGB(#080813)}; // rgba(var(--bg-f),1.0);
+  --bg-g: #{HexToRGB(#040416)}; // rgba(var(--bg-g),1.0);
 
 
-  // --bg-g: #{HexToRGB(#1e1c36)}; // rgba(var(--bg-g),1.0);
   // --bg-h: #{HexToRGB(#434CFF)}; // rgba(var(--bg-h),1.0);
   // --bg-i: #{HexToRGB(#15132d)}; // rgba(var(--bg-i),1.0);
   // --bg-j: #{HexToRGB(#05051e)}; // rgba(var(--bg-j),1.0);
