@@ -1,118 +1,29 @@
 .main-btn {
-  border-radius: 999px;
-  padding: 15px 22px;
-  max-width: 297px;
-  width: 100%;
-  height: 80px;
-  background: var(--gr-k);
-  font-weight: 600;
-  font-size: 16px;
-  color: rgba(var(--cl-f), 1);
-  font-family: var(--font-family);
-  grid-gap: 10px;
+  font-weight: 500;
+  font-size: 14px;
+  text-transform: uppercase;
+  padding: 23px 77px;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: all .4s;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.4s;
-  position: relative;
-  z-index: 1;
+  width: fit-content;
+  background-color: rgba(var(--bg-d),1.0);
 
-  &--mode {
-    background: var(--gr-j);
+  &:hover{
+    background-color: rgba(var(--bg-e),1.0);
   }
 
-  &--app {
-    background: var(--gr-j);
-    height: 46px;
-    font-size: 14px;
-    grid-gap: 5px;
-
-    @include for-tablet {
-      width: 231px;
-    }
-
-    @include tablet {
-      @include for-small-tablet {
-        width: clamp(194px, 22.559vw, 231px);
-      }
-    }
-
-    @include small-tablet {
-      max-width: 100%;
-    }
-  }
-
-  &::before {
-    position: absolute;
-    content: "";
-    inset: 0;
-    border-radius: inherit;
-    transition: all 0.3s;
-    background: var(--gr-v);
-    z-index: -1;
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-  }
-
-  &::after {
-    position: absolute;
-    content: "";
-    inset: 0;
-    border-radius: inherit;
-    transition: all 0.3s;
-    background: rgba(var(--bg-l), 1);
-    z-index: -1;
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-  }
-
-  &:focus {
-    &::after {
-      opacity: 1;
-      visibility: visible;
-    }
-  }
-
-  &:hover {
-    &::before {
-      opacity: 1;
-      visibility: visible;
-    }
-  }
-
-  &:disabled {
-    opacity: 0.4;
-  }
-
-  &--transparent{
-    background: transparent;
-    color: rgba(var(--cl-a),1.0);
-    @include gradient-border(var(--gradient-s), 1px);
-
-
-    &::before{
-      opacity: 1;
-      visibility: visible;
-    }
-
-    &::after{
-      background: var(--gr-v);
-      transition: all .4s;
-    }
-
-    &:hover{
-      color: rgba(var(--cl-f), 1);
-      &::after{
-        opacity: 1;
-        visibility: visible;
-      }
-    }
+  &:disabled{
+    opacity: .4;
   }
 }
 
 .transparent-btn{
+  width: fit-content;
   font-weight: 400;
   font-size: 14px;
   text-transform: uppercase;

@@ -16,17 +16,43 @@
     font-weight: 400;
     font-size: 14px;
     text-transform: uppercase;
+    position: relative;
+
+    &::before{
+      position: absolute;
+      content: "";
+      right: 0;
+      width: 0;
+      height: 1px;
+      bottom: -1px;
+      -webkit-transition: .4s ease-in;
+      transition: .4s ease-in;
+      background-color: rgba(var(--bg-a),1.0);
+    }
 
     &.active {
       color: rgba(var(--cl-c),1.0);
-      text-transform: uppercase;
-      text-decoration: underline;
-      text-decoration-skip-ink: none;
+      &::before{
+        background-color: rgba(var(--bg-d),1.0);
+        right: auto;
+        left: 0;
+        width: 100%;
+      }
+
+      &:hover {
+        opacity: 0.6;
+      }
     }
 
-    &:hover {
-      opacity: 0.2;
+    &:hover{
+      &::before{
+        right: auto;
+        left: 0;
+        width: 100%;
+      }
     }
+
+    
 
     &:disabled{
       opacity: .2;

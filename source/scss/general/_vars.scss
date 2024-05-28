@@ -27,8 +27,8 @@
   // }
 
   // --------------- default scroll variables ---------------
-  --scrollbar-thumb: rgb(43, 52, 206);
-  --scrollbar-track: #121835;
+  --scrollbar-thumb: #252560;
+  --scrollbar-track: #0c0c20;
   --scrollbar-track-hover: transparent;
   --overlay-bg: rgba(0, 0, 0, 0.5);
 
@@ -65,10 +65,10 @@
   --bg-a: #{HexToRGB(#ffffff)}; // rgba(var(--bg-a),1.0);
   --bg-b: #{HexToRGB(#000000)}; // rgba(var(--bg-b),1.0);
   --bg-c: #{HexToRGB(#0c0c20)}; // rgba(var(--bg-c),1.0);
+  --bg-d: #{HexToRGB(#C1A17B)}; // rgba(var(--bg-d),1.0);
+  --bg-e: #{HexToRGB(#9f805c)}; // rgba(var(--bg-e),1.0);
 
 
-  // --bg-d: #{HexToRGB(#201f38)}; // rgba(var(--bg-d),1.0);
-  // --bg-e: #{HexToRGB(#121228)}; // rgba(var(--bg-e),1.0);
   // --bg-f: #{HexToRGB(#0b0a17)}; // rgba(var(--bg-f),1.0);
   // --bg-g: #{HexToRGB(#1e1c36)}; // rgba(var(--bg-g),1.0);
   // --bg-h: #{HexToRGB(#434CFF)}; // rgba(var(--bg-h),1.0);

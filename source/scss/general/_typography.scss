@@ -41,10 +41,18 @@
   height: clamp(64px, 7.6133vw, 89px);
 }
 
+.text{
+  font-size: 21px;
+  line-height: 133%;
+  text-transform: uppercase;
+}
+
 .social {
   display: flex;
-  align-items: center;
   grid-gap: 20px;
+  width: fit-content;
+  height: fit-content;
+  align-items: center;
 
   @include mobile{
       &:not(.mode){
@@ -59,19 +67,17 @@
 
   &__link {
     overflow: hidden;
+    color: rgba(var(--cl-a),1.0);
     svg {
       transition: all 0.4s;
-      fill: rgba(var(--cl-c),1.0);
     }
 
     &:hover {
-      svg{
-        fill: rgba(var(--cl-a),1.0);
-      }
+      color: rgba(var(--cl-c),1.0);
     }
   }
 
-  &.mode{
+  &--mode{
     flex-direction: column;
     grid-gap: clamp(30px, 2.994vw, 35px);
   }
