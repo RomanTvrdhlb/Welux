@@ -1,6 +1,6 @@
 .sub-slider{
     position: relative;
-    width: 595px;
+    width: 577px;
 
     &::before{
         left: -20px;
@@ -12,7 +12,6 @@
         pointer-events: none;
         bottom: 0;
     }
-
 
     &__slide{
         cursor: pointer;
@@ -38,13 +37,15 @@
 
     &__bar{
         position: absolute;
-        top: -50px;
-        left: 0;
+        top: -310px;
+        
+        transform: translate(45%, 100%) rotate(-90deg);
         height: 1px;
         background-color: rgba(var(--bg-a),.3);
         width: 242px;
         display: flex;
         align-items: flex-end;
+
 
         .swiper-scrollbar{
             &-drag{
@@ -64,16 +65,32 @@
         }
 
         &:before {
-            left: -17px;
+            left: -23px;
             transform: translate(-50%, -50%);
             content: attr(data-current-slide);
         }
 
         &::after{
-            right: -17px;
+            right: -23px;
             transform: translate(50%, -50%);
             content: attr(data-total-slides);
         }
+
+        @include for-desktop{
+            right: -100px;
+          }
+      
+          @include desktop{
+            @media (min-width: (1280px)) {
+              right: -16px;
+              transform: translate(55%, 100%) rotate(-90deg);
+            }
+          }
+      
+          @media (max-width: (1280px)) {
+            right: 0px;
+            transform: translate(47%, 100%) rotate(-90deg);
+          }
     }
 
     .swiper-counter{

@@ -1,5 +1,4 @@
 .footer {
-  padding: clamp(20px, 56px, 56px) 0 clamp(20px, 10.2652vw, 120px);
   overflow: hidden;
   position: relative;
   z-index: 5;
@@ -16,21 +15,136 @@
     z-index: 2;
   }
 
+  @include for-mobile{
+    padding: clamp(20px, 56px, 56px) 0 clamp(27px, 6.1591vw, 72px);
+  }
+
+  @include mobile{
+    padding: 20px 0 27px;
+  }
 
   &__box{
     display: flex;
-    grid-gap: 52px;
+    flex-direction: column;
+
+    @include for-mobile{
+      grid-gap: clamp(38px, 8.8965vw, 104px);
+    }
+
+    @include mobile{
+      grid-gap: 38px;
+    }
+  }
+
+  &__bottom{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    grid-gap: 59px 20px;
+
+    @include mobile{
+      flex-direction: column;
+    }
+  }
+
+  &__social{
+    display: flex;
+    align-items: center;
+    grid-gap: 23px;
+
+    @include mobile{
+      width: 100%;
+
+      @include for-ios{
+        justify-content: space-around;
+      }
+    }
+
+    @include ios{
+      justify-content: space-between;
+    }
+
+    li a{
+      font-family: var(--font-family);
+      font-weight: 400;
+      font-size: 14px;
+      color: rgba(var(--cl-e),1.0);
+      transition: all .4s;
+
+      &:hover{
+        color: rgba(var(--cl-c),1.0);
+      }
+
+      &:disabled{
+        opacity: .4;
+      }
+    }
+  }
+
+  &__copyright{
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 14px;
+    color: rgba(var(--cl-e),1.0);
+    text-align: right;
+  }
+
+  &__top{
+    display: flex;
+    grid-gap: 35px 52px;
     align-items: flex-start;
     justify-content: space-between;
+    position: relative;
+
+    @include mobile{
+      flex-direction: column;
+      align-items: center;
+    }
   }
 
   .title{
-    font-size: clamp(32px, 4.7049vw, 55px);
-    line-height: 182%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-60%, -20%);
+    @include for-tablet{
+      transform: translate(-60%, -25%);
+    }
+
+    @include tablet{
+      @include for-mobile{
+        transform: translate(-50%, -20%);
+      }
+  
+      text-transform: uppercase;
+      text-decoration: underline;
+      text-decoration-skip-ink: none;
+      text-underline-offset: 6px;
+    }
+
+    @include for-mobile{
+      top: 50%;
+      left: 50%;
+      font-size: clamp(26px, 4.7049vw, 55px);
+      line-height: 182%;
+      position: absolute;
+    }
+
+    @include mobile{
+      line-height: 312%;
+      margin: 2px 0 3px;
+      order: 3;
+      font-size: 32px;
+    }
+  }
+
+  .main-nav{
+    @include mobile{
+      width: 100%;
+      @include for-ios{
+        justify-content: space-around;
+      }
+    }
+
+    @include ios{
+      justify-content: space-between;
+    }
   }
  
 }

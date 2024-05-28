@@ -2,6 +2,7 @@
   display: grid;
   grid-gap: 19px clamp(15px, 1.6253vw, 19px);
   counter-reset: li;
+  z-index: 1;
 
   @include for-tablet {
     grid-template-columns: repeat(4, 1fr);
@@ -22,7 +23,6 @@
   &__item {
     position: relative;
     counter-increment: li;
-    z-index: 1;
 
     &:first-child {
       @include for-tablet {
@@ -61,7 +61,7 @@
     &::before {
       position: absolute;
       background: rgba(var(--bg-c), 1);
-      z-index: -1;
+      z-index: -2;
       pointer-events: none;
       @include for-tablet {
         right: 0;

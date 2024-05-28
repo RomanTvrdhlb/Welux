@@ -4,14 +4,10 @@
   right: 0;
   top: 0;
   z-index: 90;
-  padding: 96px 0;
+  padding: clamp(60px, 8.2121vw, 96px) 0 96px;
 
   @include tablet{
-    background-color: rgba(var(--bg-f),1);
-  }
-
-  @include mobile {
-    padding: 16px 0 12px;
+    padding: 20px 0 98px;
   }
 
   // &.sticky {
@@ -58,16 +54,13 @@
         }
       }
     
-
     @include tablet {
-      grid-template-columns: auto 1fr auto;
+      grid-template-columns: 1fr auto;
       grid-gap: clamp(15px, 1.953vw, 20px);
       .main-nav {
         display: none;
       }
-    
     }
-
   }
 
   &__btns {
@@ -76,13 +69,21 @@
       justify-content: flex-end;
       grid-gap: clamp(20px, 2.3097vw, 27px);
 
-
       .transparent-btn{
         margin-right: clamp(27px, 4.0205vw, 47px);
+      }
+
+      @include tablet{
+        display: none;
       }
   }
 
   &__btn{
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     svg{
       transition: all .4s;
     }
@@ -102,10 +103,7 @@
 
   @include tablet {
     display: flex;
-    @include burger;
-  }
-
-  @include ios {
     justify-self: end;
+    @include burger;
   }
 }

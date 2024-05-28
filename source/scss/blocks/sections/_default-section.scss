@@ -4,7 +4,14 @@
   &__box {
     display: flex;
     flex-direction: column;
-    grid-gap: 15px;
+
+    @include for-small-tablet{
+      grid-gap: 15px;
+    }
+
+    @include small-tablet{
+      grid-gap: 57px 15px;
+    }
   }
 
   &__image {
@@ -26,31 +33,79 @@
   }
 
   &__user {
-    width: clamp(224px, 30.5389vw, 357px);
-    height: clamp(253px, 34.4739vw, 403px);
     justify-self: end;
+
+    @include for-small-tablet{
+      width: clamp(224px, 30.5389vw, 357px);
+      height: clamp(253px, 34.4739vw, 403px);
+    }
+
+    @include small-tablet{
+      width: clamp(224px, 38.281vw, 294px);
+      height: auto;
+    }
+
+  
   }
 
   &__about {
     display: grid;
     grid-template-columns: auto 1fr auto;
     grid-gap: 59px clamp(20px, 2.5663vw, 30px);
-    padding: 0 clamp(20px, 3.5928vw, 42px) 0 clamp(20px, 11.2917vw, 132px);
+
+    @include for-small-tablet{
+      padding: 0 clamp(20px, 3.5928vw, 42px) 0 clamp(90px, 11.2917vw, 132px);
+    }
 
     .social {
-      padding-top: clamp(40px, 6.929vw, 81px);
+      @include for-small-tablet{
+        padding-top: clamp(40px, 6.929vw, 81px);
+      }
+
+      @include small-tablet{
+        @include for-mobile{
+          padding-left: 80px;
+        }
+      }
+
+      @include mobile{
+        align-self: center;
+      }
     }
 
     .default-section__info {
-      padding-top: clamp(40px, 6.929vw, 81px);
+      @include for-small-tablet{
+        padding-top: clamp(40px, 6.929vw, 81px);
+      }
+
+      @include small-tablet{
+        order: 3;
+        grid-column: span 2;
+      }
+    }
+
+    @include small-tablet{
+      grid-template-columns: auto 1fr;
     }
   }
 
   &__info {
-    max-width: 332px;
     display: flex;
     flex-direction: column;
     grid-gap: 40px;
+
+    @include for-small-tablet{
+      max-width: 332px;
+    }
+
+    @include mobile{
+
+      p{
+        &:not([class]){
+          max-width: 75%;
+        }
+      }
+    }
   }
 
   &--about {
@@ -64,15 +119,38 @@
       top: 0;
       pointer-events: none;
       content: "";
-      right: calc((var(--container-width) / 4) * -1);
-      width: 50vw;
-      height: 535px;
-      transform: translateY(-2%);
 
-      @include mobile {
-        left: 41%;
+      @include for-laptop{
+        right: calc((var(--container-width) / 4) * -1);
+        width: 50vw;
+      }
+
+      @include laptop{
+        @include for-small-tablet{
+        right: 0;
+        width: 37%;
+        }
+      }
+
+      @include for-small-tablet{
+        height: 535px;
+        transform: translateY(-2%);
+      }
+      
+
+      @include small-tablet {
         width: 100vw;
         height: 545px;
+
+        @include for-mobile{
+          left: 36%;
+        transform: translateY(-2%);
+        }
+      }
+
+      @include mobile{
+        left: 23%;
+        transform: translateY(-24%);
       }
     }
   }

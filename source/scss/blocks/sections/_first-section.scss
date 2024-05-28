@@ -16,16 +16,41 @@
 
   .sub-slider{
     align-self: flex-end;
+
+    @include tablet{
+      margin-top: 139px;
+    }
   }
 
   &__aside{
     position: absolute;
-    left: -75px;
     bottom: 134px;
     display: flex;
     flex-direction: column;
     grid-gap: 21px;
     align-items: center;
+
+    @include for-desktop{
+      left: -100px;
+    }
+
+    @include desktop{
+      @media (min-width: (1280px)) {
+        left: -16px;
+        transform: translateX(-100%);
+      }
+    }
+
+    @media (max-width: (1280px)) {
+      @include for-tablet{
+      bottom: 40px;
+      }
+      left: 0;
+    }
+
+    @include tablet{
+      bottom: 0;
+    }
 
     &::before{
       background-color:  rgba(var(--bg-a),.3);
@@ -33,6 +58,19 @@
       height: 242px;
       display: block;
       content: '';
+
+      
+      @media (max-width: (1280px)) {
+        display: none;
+      }
+    }
+
+    .social{
+      @media (max-width: (1280px)) {
+        @include for-tablet{
+          flex-direction: row;
+        }
+      }
     }
   }
 
@@ -40,14 +78,16 @@
     font-family: var(--second-family);
     font-size: 14px;
     text-transform: uppercase;
-    transform: translate(-50%, -100%) rotate(-90deg);
+    transform: translate(-50%, -30%) rotate(-90deg);
       position: absolute;
       top: -60px;
       left: 50%;
       white-space: nowrap;
+
+      @media (max-width: (1280px)) {
+      display: none;
+      }
 }
-
-
 
   &__box {
     display: flex;
@@ -68,8 +108,11 @@
     display: flex;
     flex-direction: column;
     grid-gap: clamp(30px, 3.4217vw, 40px);
-  }
 
+    .main-btn{
+      margin-top: 5px;
+    }
+  }
 
   .subtitle{
     font-weight: 500;
