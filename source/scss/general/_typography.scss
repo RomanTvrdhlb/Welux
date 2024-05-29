@@ -126,3 +126,100 @@
     opacity: .6;
   }
 }
+
+.swiper-counter{
+  display: inline-flex;
+  grid-gap: 5px;
+  align-items: flex-start;
+  font-family: var(--second-family);
+  text-transform: uppercase;
+
+  .count{
+      line-height: 80%;
+      font-weight: 700;
+      font-size: 55px;
+  }
+
+  .total{
+      font-size: 21px;
+  }
+}
+
+.custom-pagination{
+  display: flex;
+  align-items: center;
+  grid-gap: 7px;
+
+  .swiper-pagination-bullet{
+      background-color: rgba(var(--bg-a),.17);
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: block;
+      border: solid 1px transparent;
+      cursor: pointer;
+
+      &-active{
+          background-color: transparent;
+          border-color: var(--br-a);
+      }
+  }
+}
+
+.custom-bar{
+    height: 1px;
+    background-color: rgba(var(--bg-a),.3);
+    width: 242px;
+    display: flex;
+    align-items: flex-end;
+    z-index: 10;
+    position: absolute;
+    bottom: 419px;
+    transform: translate(45%, 100%) rotate(-90deg);
+
+    .swiper-scrollbar{
+        &-drag{
+            background-color: rgba(var(--bg-a),1.0);
+            height: 2px;
+        }
+    }
+
+    &::before, &::after{
+        z-index: 5;
+        position: absolute;
+        top: 50%;
+        pointer-events: none;
+        font-family: var(--second-family);
+        font-weight: 400;
+        font-size: 14px;
+        text-transform: uppercase;
+    }
+
+    &:before {
+        left: -23px;
+        transform: translate(-50%, -50%);
+        content: attr(data-current-slide);
+    }
+
+    &::after{
+        right: -23px;
+        transform: translate(50%, -50%);
+        content: attr(data-total-slides);
+    }
+
+        @include for-desktop{
+            right: -100px;
+          }
+      
+          @include desktop{
+            @media (min-width: (1280px)) {
+              right: -16px;
+              transform: translate(55%, 100%) rotate(-90deg);
+            }
+          }
+      
+          @media (max-width: (1280px)) {
+            right: 0px;
+            transform: translate(47%, 100%) rotate(-90deg);
+          }
+}

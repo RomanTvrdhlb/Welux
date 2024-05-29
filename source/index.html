@@ -7,7 +7,7 @@
 
   <main>
 
-    <section class="first-section">
+    <section class="first-section" data-gallery>
       <div class="bg-slider">
         <div class="bg-slider__wrapper swiper-wrapper">
           <div class="bg-slider__slide swiper-slide">
@@ -36,7 +36,6 @@
           </div>
         
         </div>
-    
       </div>
 
       <div class="container">
@@ -76,7 +75,6 @@
             <span class="subtitle">UNLOCK THE POSSIBILITIES OF <b>ELEGANCE</b> AND <b>LUXURY</b></span>
             <button class="main-btn">Contact us</button>
           </div>
-          
           <div class="sub-slider">
             <div class="sub-slider__container swiper-container">
             <div class="sub-slider__wrapper swiper-wrapper">
@@ -108,10 +106,10 @@
               
             </div>
           </div>
-          <div class="sub-slider__pagination swiper-pagination"></div>
+          <div class="custom-pagination swiper-pagination"></div>
           <div class="swiper-counter"></div>
-            <div class="sub-slider__bar swiper-scrollbar"></div>
           </div>
+          <div class="custom-bar swiper-scrollbar"></div>
         </div>
       </div>
     </section>
@@ -286,9 +284,9 @@
 
 
   </main>
-  <div class="preloader">
+  <!-- <div class="preloader">
     <img width="222" height="180" src="img/logo.svg" alt="logo">
-  </div>
+  </div> -->
   @include('partials/footer.html')
   @include('partials/modals.html')
 </body>

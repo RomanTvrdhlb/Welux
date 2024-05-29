@@ -10,8 +10,6 @@
     position: absolute;
     inset: 0;
     z-index: -1;
-    pointer-events: none;
-    opacity: .2;
   }
 
   .sub-slider{
@@ -168,6 +166,7 @@
   }
 
   &__aside{
+    z-index: 5;
     position: absolute;
     bottom: 134px;
     display: flex;
@@ -235,6 +234,7 @@
 }
 
   &__box {
+  
     display: flex;
     flex-direction: column;
     position: relative;
@@ -248,8 +248,8 @@
     }
   }
 
- 
   &__inner {
+    z-index: 2;
     display: flex;
     flex-direction: column;
     grid-gap: clamp(30px, 3.4217vw, 40px);
