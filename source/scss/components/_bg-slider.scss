@@ -12,5 +12,14 @@
             height: 100%;
             object-position: bottom center;
         }
+
+        opacity: 0;
+        visibility: hidden;
+        transition: all .1s;
+     
+        &.swiper-slide-active{
+            opacity: 1;
+            visibility: visible;
+        }
     }
 }

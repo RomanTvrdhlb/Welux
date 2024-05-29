@@ -16,7 +16,7 @@
     align-self: flex-end;
 
     @include tablet{
-      margin-top: 139px;
+      margin-top: clamp(95px, 13.184vw, 135px);
     }
   }
 
@@ -256,6 +256,12 @@
 
     .main-btn{
       margin-top: 5px;
+    }
+
+    .subtitle{
+      @include mobile{
+        max-width: 230px;
+      }
     }
   }
 

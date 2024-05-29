@@ -6,6 +6,7 @@ import {
   Pagination,
   Scrollbar,
   Thumbs,
+  EffectFade
 } from "swiper/modules";
 
 const { parentSliders } = vars;
@@ -48,19 +49,35 @@ if (parentSliders) {
       spaceBetween: 20,
       slidesPerView: 3,
       freeMode: true,
-      speed: 1300,
+      speed: 1000,
       observer: true,
       observeParents: true,
       watchSlidesVisibility: true,
       watchSlidesProgress: true,
+
+      breakpoints:{
+        320:{
+          slidesPerView: 1.35,
+        },
+        480:{
+          slidesPerView: 1.9,
+        },
+        768:{
+          slidesPerView: 3,
+        },
+      },
     }
   );
 
   var galleryBg = new Swiper(mainSwiper, {
-    modules: [Thumbs, Pagination, Scrollbar],
+    modules: [Thumbs, Pagination, Scrollbar, EffectFade],
+    effect: "fade",
+    fadeEffect: {
+      crossFade: true,
+    },
     spaceBetween: 10,
     slidesPerView: 1,
-    speed: 800,
+    speed: 1500,
     observer: true,
     observeParents: true,
 
@@ -87,18 +104,38 @@ if (parentSliders) {
     },
   });
 
+  let activeSlide = null;
 
   subSlider.on('click', (swiper, event) => {
     const clickedSlide = swiper.clickedSlide;
-    const clickedIndex = swiper.clickedIndex;
-    const visibleSlidesIndexes = swiper.visibleSlidesIndexes;
-
-    if (clickedSlide) {
-      if (clickedIndex === visibleSlidesIndexes[0]) {
-        galleryBg.slidePrev();
-      } else if (clickedIndex === visibleSlidesIndexes[visibleSlidesIndexes.length - 1]) {
-        galleryBg.slideNext();
+  
+    if (!activeSlide) {
+      activeSlide = swiper.slides.find(slide => slide.classList.contains('swiper-slide-thumb-active'));
+  
+      if (!activeSlide) {
+        console.error('Active slide not found');
+        return;
       }
     }
+  
+    const clickedIndex = swiper.slides.indexOf(clickedSlide);
+    const activeIndex = swiper.slides.indexOf(activeSlide);
+  
+    if (clickedSlide === activeSlide) {
+      // Ничего не делаем, так как кликнутый слайд уже активен
+      return;
+    }
+  
+    if (clickedIndex > activeIndex) {
+      // Прокручиваем вперед
+      subSlider.slideNext();
+    } else if (clickedIndex < activeIndex) {
+      // Прокручиваем назад
+      subSlider.slidePrev();
+    }
+  
+    // Перезаписываем активный слайд
+    activeSlide = clickedSlide;
   });
+  
 }
