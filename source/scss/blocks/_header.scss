@@ -10,33 +10,6 @@
     padding: 20px 0 98px;
   }
 
-  // &.sticky {
-  //   @include for-tablet{
-  //   .main-nav {
-  //     backdrop-filter: initial;
-  //     background-color: transparent;
-  //     &::after {
-  //       opacity: 1;
-  //     }
-  //   }
-  //   .logo {
-  //     transform: translateX(-12px);
-  //     opacity: 0;
-  //     visibility: hidden;
-  //   }
-
-  //   .header__btns{
-  //     transform: translateX(12px);
-  //     opacity: 0;
-  //     visibility: hidden;
-  //   }
-  // }
-
-  // @include tablet{
-  //   box-shadow: 0 10px 20px 0 #0b0a17;
-  // }
-  // }
-
   &__inner {
     display: grid;
     align-items: center;

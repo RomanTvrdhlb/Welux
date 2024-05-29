@@ -1,201 +1,199 @@
-.info-section{
-    padding-bottom: clamp(100px, 11.2917vw, 132px);
-    overflow: hidden;
+.info-section {
+  padding-bottom: clamp(100px, 11.2917vw, 132px);
+  overflow: hidden;
 
-    &__box{
-        display: flex;
-        flex-direction: column;
-        grid-gap: clamp(307px, 34.5595vw, 404px);
-    
+  &__box {
+    display: flex;
+    flex-direction: column;
+    grid-gap: clamp(307px, 34.5595vw, 404px);
+  }
+
+  &__title {
+    width: 100%;
+
+    .words {
+      @include for-mobile {
+        padding-right: Min(10.9495vw, 128px);
+      }
     }
 
-    &__title{
-        width: 100%;
+    * {
+      font-weight: 400;
+      letter-spacing: -0.05em;
+      text-transform: uppercase;
+      text-align: justify;
 
-        .words{
-            @include for-mobile{
-                padding-right: Min(10.9495vw, 128px);
-            }
-        }
-      
-        *{
-            font-weight: 400;
-            letter-spacing: -0.05em;
-            text-transform: uppercase;
-            text-align: justify;
-          
-    
-            @include for-mobile{
-                line-height: 121%;
-            }
+      @include for-mobile {
+        line-height: 121%;
+      }
 
-            @include for-ios{
-                font-size: clamp(30px, 6.4157vw, 75px);
-            }
+      @include for-ios {
+        font-size: clamp(30px, 6.4157vw, 75px);
+      }
 
-            @include ios{
-                font-size: Min(7.246vw ,30px);
-            }
-        }
-
-        p{
-            display: flex;
-            justify-content: space-between;
-        }
-
-        @include for-tablet{
-            margin-top: -65px;
-        }
-
-        @include tablet{
-            @include for-small-tablet{
-                margin-top: calc(clamp(45px, 5.859vw, 60px) * -1); 
-            }
-        }
-
-        @include small-tablet{
-            @include for-mobile{
-            margin-top: calc(clamp(30px, 6.51vw, 50px) * -1);
-            }
-        }
-       
+      @include ios {
+        font-size: Min(7.246vw, 30px);
+      }
     }
 
-    &__inner{
-        position: relative;
-        z-index: 1;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
-        &::before{
-            z-index: -1;
-            pointer-events: none;
-            position: absolute;
-            content: '';
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1512' height='1001' fill='none'%3E%3Cg opacity='0.6'%3E%3Cpath stroke='%23C1A17B' stroke-linecap='round' stroke-opacity='0.4' stroke-width='2' d='M30.3693 1.3099c0 410.5911 325.4597 743.4421 726.9347 743.4421 401.476 0 726.936-332.851 726.936-743.4421'/%3E%3Cpath stroke='%23C1A17B' stroke-linecap='round' stroke-opacity='0.4' stroke-width='2' d='M208.894 77.1214c0 309.9696 245.531 561.2496 548.41 561.2496 302.876 0 548.406-251.28 548.406-561.2496'/%3E%3Cpath fill='url(%23paint0_linear_2019_59)' d='M1815 1000.31h2116v999H1815z' transform='rotate(180 1815 1000.31)'/%3E%3C/g%3E%3Cpath fill='%23C1A17B' fill-rule='evenodd' d='M765.232 606.926c0 5.311-4.306 9.616-9.617 9.616-5.311 0-9.616-4.305-9.616-9.616s4.305-9.616 9.616-9.616 9.617 4.305 9.617 9.616Zm-8.233 11.535c5.763-.684 10.233-5.588 10.233-11.535 0-6.415-5.201-11.616-11.617-11.616-6.415 0-11.616 5.201-11.616 11.616 0 6.209 4.871 11.28 11 11.6v19.07c-29.251.252-52.886 24.043-52.886 53.354 0 29.468 23.889 53.356 53.356 53.356 29.468 0 53.357-23.888 53.357-53.356 0-28.956-23.067-52.525-51.827-53.335v-19.154Zm-2.53 195.464v-69.011h2v69.014c2.15-3.237 5.829-5.37 10.006-5.37v2c-5.526 0-10.005 4.48-10.005 10.005h-2c0-5.525-4.48-10.005-10.005-10.005v-2c4.175 0 7.853 2.132 10.004 5.367Zm.594.994c.146.274.282.554.407.84.125-.286.261-.566.407-.84h-.814Zm.406-72.613c28.364 0 51.357-22.993 51.357-51.356 0-28.363-22.993-51.356-51.357-51.356-28.363 0-51.356 22.993-51.356 51.356 0 28.363 22.993 51.356 51.356 51.356Z' clip-rule='evenodd' opacity='0.6'/%3E%3Cdefs%3E%3ClinearGradient id='paint0_linear_2019_59' x1='2776.64' x2='2776.64' y1='1999.31' y2='1048.23' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0.406' stop-color='%23040416'/%3E%3Cstop offset='1' stop-color='%23040416' stop-opacity='0'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E");
-            background-size: contain;
-            background-position: center center;
-            background-repeat: no-repeat;
-            width: Min(1512px, 1512px);
-            height: Min(85.6287vw, 1001px);
-            height: clamp(620px, 85.6287vw, 1001px);
-            bottom: 0;
-            left: 50%;
-            transform: translate(-50%, 52%);
-        }
-
-        @include mobile{
-            grid-gap: 30px;
-        }
+    p {
+      display: flex;
+      justify-content: space-between;
     }
 
-    &__image{
-        position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: flex-end;
-        z-index: 1;
-
-        @include for-tablet{
-            width: 248px;
-            height: 326px;
-            padding-bottom: 30px;
-        }
-        @include tablet{
-            @include for-small-tablet{
-                padding-bottom: 25px;
-               width: Min(24.219vw, 248px);
-               height: Min(31.836vw, 326px);
-            }
-            }
-
-            @include small-tablet{
-                @include for-mobile{
-                    padding-bottom: 20px;
-                    width: Min(27.474vw, 211px);
-                    height: Min(36.198vw ,278px);
-                }
-            }
-
-            @include mobile{
-                width: 211px;
-                height: 278px;
-                padding-bottom: 17px;
-            }
-
-        img,picture{
-            rotate: 7.5deg;
-            filter: grayscale(1);
-
-            @include for-tablet{
-                width: 196px;
-                height: 254px;
-            }
-
-            @include tablet{
-                @include for-small-tablet{
-                    width: Min(19.141vw ,196px);
-                    height: Min(24.805vw ,254px);
-                }
-            }
-    
-            @include small-tablet{
-                @include for-mobile{
-                width: Min(26.823vw, 206px);
-                height: Min(34.766vw ,267px);
-            }
-        }
-
-            @include mobile{
-                width: 206px;
-                height: 267px;
-            }
-        }
-
-        &::before{
-            inset: 0;
-            background-color: rgba(var(--bg-c),1.0);
-            content: '';
-            position: absolute;
-            z-index: -1;
-        }
+    @include for-tablet {
+      margin-top: -65px;
     }
 
-    &__info{
-        display: flex;
-       
-        @include for-tablet{
-            grid-gap: clamp(60px, 12.8315vw, 150px);
-        }
-
-        @include tablet{
-            grid-gap: 35px clamp(20px, 2.5663vw, 30px);
-        }
-
-        @include for-small-tablet{
-            justify-content: center;
-            align-items: flex-end;
-        }
-
-        @include small-tablet{
-            flex-direction: column;
-        }
-
-        p{
-            line-height: 200%;
-
-            @include for-small-tablet{
-                max-width: 393px;
-            }
-        }
-
-        .text{
-            line-height: 133%;
-
-            @include for-small-tablet{
-                max-width: 343px;
-            }
-        }
+    @include tablet {
+      @include for-small-tablet {
+        margin-top: calc(clamp(45px, 5.859vw, 60px) * -1);
+      }
     }
+
+    @include small-tablet {
+      @include for-mobile {
+        margin-top: calc(clamp(30px, 6.51vw, 50px) * -1);
+      }
+    }
+  }
+
+  &__inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &::before {
+      z-index: -1;
+      pointer-events: none;
+      position: absolute;
+      content: "";
+      background-size: contain;
+      background-image: var(--icon-bg);
+      background-position: center center;
+      background-repeat: no-repeat;
+      width: Min(1512px, 1512px);
+      height: Min(85.6287vw, 1001px);
+      height: clamp(620px, 85.6287vw, 1001px);
+      bottom: 0;
+      left: 50%;
+      transform: translate(-50%, 52%);
+    }
+
+    @include mobile {
+      grid-gap: 30px;
+    }
+  }
+
+  &__image {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    z-index: 1;
+
+    @include for-tablet {
+      width: 248px;
+      height: 326px;
+      padding-bottom: 30px;
+    }
+    @include tablet {
+      @include for-small-tablet {
+        padding-bottom: 25px;
+        width: Min(24.219vw, 248px);
+        height: Min(31.836vw, 326px);
+      }
+    }
+
+    @include small-tablet {
+      @include for-mobile {
+        padding-bottom: 20px;
+        width: Min(27.474vw, 211px);
+        height: Min(36.198vw, 278px);
+      }
+    }
+
+    @include mobile {
+      width: 211px;
+      height: 278px;
+      padding-bottom: 17px;
+    }
+
+    img,
+    picture {
+      rotate: 7.5deg;
+      filter: grayscale(1);
+
+      @include for-tablet {
+        width: 196px;
+        height: 254px;
+      }
+
+      @include tablet {
+        @include for-small-tablet {
+          width: Min(19.141vw, 196px);
+          height: Min(24.805vw, 254px);
+        }
+      }
+
+      @include small-tablet {
+        @include for-mobile {
+          width: Min(26.823vw, 206px);
+          height: Min(34.766vw, 267px);
+        }
+      }
+
+      @include mobile {
+        width: 206px;
+        height: 267px;
+      }
+    }
+
+    &::before {
+      inset: 0;
+      background-color: rgba(var(--bg-c), 1);
+      content: "";
+      position: absolute;
+      z-index: -1;
+    }
+  }
+
+  &__info {
+    display: flex;
+
+    @include for-tablet {
+      grid-gap: clamp(60px, 12.8315vw, 150px);
+    }
+
+    @include tablet {
+      grid-gap: 35px clamp(20px, 2.5663vw, 30px);
+    }
+
+    @include for-small-tablet {
+      justify-content: center;
+      align-items: flex-end;
+    }
+
+    @include small-tablet {
+      flex-direction: column;
+    }
+
+    p {
+      line-height: 200%;
+
+      @include for-small-tablet {
+        max-width: 393px;
+      }
+    }
+
+    .text {
+      line-height: 133%;
+
+      @include for-small-tablet {
+        max-width: 343px;
+      }
+    }
+  }
 }

@@ -1,78 +1,80 @@
-.sub-slider{
-    position: relative;
+.sub-slider {
+  position: relative;
 
-    @include for-small-tablet{
-        width: 577px;
+  @include for-small-tablet {
+    width: 577px;
+  }
+
+  @include small-tablet {
+    width: 71%;
+  }
+
+  &::before {
+    left: -20px;
+    content: "";
+    position: absolute;
+    height: 106px;
+    width: 1px;
+    background-color: rgba(var(--bg-a), 1);
+    pointer-events: none;
+    bottom: 0;
+    z-index: 5;
+
+    @include small-tablet {
+      left: 0;
+    }
+  }
+
+  &__container {
+    @include small-tablet {
+      margin-right: calc(var(--container-offset) * -1);
+      padding-left: 20px;
+      padding-right: var(--container-offset);
+    }
+  }
+
+  &__slide {
+    cursor: pointer;
+    height: 106px;
+
+    img,
+    picture {
+      width: 100%;
+      height: 100%;
     }
 
-    @include small-tablet{
-     width: 71%;
+    @include small-tablet {
+      width: 178px;
     }
-    
-    &::before{
-        left: -20px;
-        content: '';
-        position: absolute;
-        height: 106px;
-        width: 1px;
-        background-color: rgba(var(--bg-a),1.0);
-        pointer-events: none;
-        bottom: 0;
-        z-index: 5;
+  }
 
-        @include small-tablet{
-            left: 0;
-        }
+  .swiper-counter {
+    position: absolute;
+    right: 0;
+    transform: translateY(-100%);
+    z-index: 5;
+
+    @include for-mobile {
+      top: -32px;
     }
 
-    &__container{
-        @include small-tablet{
-            margin-right: calc(var(--container-offset) * -1);
-            padding-left: 20px;
-        }
+    @include mobile {
+      top: -39px;
+    }
+  }
+
+  .custom-pagination {
+    position: absolute;
+    top: -19px;
+    z-index: 10;
+    transform: translateY(-100%);
+
+    @include for-small-tablet {
+      left: 0;
     }
 
-    &__slide{
-        cursor: pointer;
-        height: 106px;
-
-        img,picture{
-            width: 100%;
-            height: 100%;
-        }
-
-        @include small-tablet{
-            width: 178px;
-        }
+    @include small-tablet {
+      left: 20px;
     }
-
-    .swiper-counter{
-        position: absolute;
-        right: 0;
-        transform: translateY(-100%);
-        z-index: 5;
-
-        @include for-mobile{
-            top: -32px;
-        }
-
-        @include mobile{
-            top: -39px;
-        }
-    }
-
-    .custom-pagination{
-        position: absolute;
-        top: -19px;
-        z-index: 10;
-        transform: translateY(-100%);
-
-        @include for-small-tablet{
-            left: 0;
-        }
-
-        @include small-tablet{
-            left: 20px;
-        }
-    }
+  }
 }

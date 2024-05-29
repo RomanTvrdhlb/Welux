@@ -2,13 +2,8 @@ html {
   box-sizing: border-box;
   width: 100%;
   max-width: 100dvw;
-  // scroll-behavior: smooth;
   will-change: font-size;
-  font-size: var(--rem-function);
-
-
-
-
+  font-size: 16px;
 }
 
 body {
@@ -27,7 +22,6 @@ body {
 
   background-color: var(--body-bg);
   -webkit-text-size-adjust: 100%;
-  // for text resize
 
   display: flex;
   flex-direction: column;
@@ -40,7 +34,6 @@ body {
     left: 0;
     width: 100%;
     overflow: hidden;
-    // disable scroll
   }
 }
 
@@ -201,21 +194,7 @@ fieldset {
   max-width: var(--container-width);
   margin: 0 auto;
   padding: 0 var(--container-offset);
-
-  &--mode{
-    max-width: var(--container-width-mode);
-  }
-
-  &--dash {
-    // margin: 0;
-    max-width: calc(1325px + (clamp(16px, 1.6239vw, 19px) * 2));
-    padding: 0 clamp(16px, 1.6239vw, 19px);
-  }
 }
-
-// .swiper-container {
-//   overflow: hidden;
-// }
 
 .panel,
 [data-content] {

@@ -1,8 +1,6 @@
 import Swiper from "swiper";
 import vars from "../_vars";
 import {
-  Navigation,
-  Controller,
   Pagination,
   Scrollbar,
   Thumbs,
@@ -42,6 +40,10 @@ if (parentSliders) {
     bar.dataset.totalSlides = formatNumber(totalSlides);
   }
 
+  function findActiveSlide(slides) {
+    return slides.find(slide => slide.classList.contains('swiper-slide-thumb-active'));
+  }
+
   var subSlider = new Swiper(
     subSwiper.querySelector(".sub-slider__container"),
     {
@@ -72,14 +74,15 @@ if (parentSliders) {
   var galleryBg = new Swiper(mainSwiper, {
     modules: [Thumbs, Pagination, Scrollbar, EffectFade],
     effect: "fade",
-    fadeEffect: {
-      crossFade: true,
-    },
     spaceBetween: 10,
     slidesPerView: 1,
     speed: 1500,
     observer: true,
     observeParents: true,
+
+    fadeEffect: {
+      crossFade: true,
+    },
 
     thumbs: {
       swiper: subSlider,
@@ -104,38 +107,31 @@ if (parentSliders) {
     },
   });
 
-  let activeSlide = null;
+  let activeSlide = findActiveSlide(subSlider.slides);
 
   subSlider.on('click', (swiper, event) => {
     const clickedSlide = swiper.clickedSlide;
   
     if (!activeSlide) {
-      activeSlide = swiper.slides.find(slide => slide.classList.contains('swiper-slide-thumb-active'));
+      activeSlide = findActiveSlide(swiper.slides);
   
       if (!activeSlide) {
-        console.error('Active slide not found');
         return;
       }
     }
-  
-    const clickedIndex = swiper.slides.indexOf(clickedSlide);
     const activeIndex = swiper.slides.indexOf(activeSlide);
-  
+    const clickedIndex = swiper.slides.indexOf(clickedSlide);
+    
     if (clickedSlide === activeSlide) {
-      // Ничего не делаем, так как кликнутый слайд уже активен
       return;
     }
   
     if (clickedIndex > activeIndex) {
-      // Прокручиваем вперед
       subSlider.slideNext();
     } else if (clickedIndex < activeIndex) {
-      // Прокручиваем назад
       subSlider.slidePrev();
     }
   
-    // Перезаписываем активный слайд
     activeSlide = clickedSlide;
   });
-  
 }
