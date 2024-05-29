@@ -1,11 +1,6 @@
 import Swiper from "swiper";
 import vars from "../_vars";
-import {
-  Pagination,
-  Scrollbar,
-  Thumbs,
-  EffectFade
-} from "swiper/modules";
+import { Pagination, Scrollbar, Thumbs, EffectFade } from "swiper/modules";
 
 const { parentSliders } = vars;
 
@@ -107,31 +102,39 @@ if (parentSliders) {
     },
   });
 
-  let activeSlide = findActiveSlide(subSlider.slides);
+  function handleResize() {
+    if (window.innerWidth > 768) {
+      let activeSlide = findActiveSlide(subSlider.slides);
+      subSlider.on('click', (swiper, event) => {
+        const clickedSlide = swiper.clickedSlide;
+      
+        if (!activeSlide) {
+          activeSlide = findActiveSlide(swiper.slides);
+      
+          if (!activeSlide) {
+            return;
+          }
+        }
+        const activeIndex = swiper.slides.indexOf(activeSlide);
+        const clickedIndex = swiper.slides.indexOf(clickedSlide);
+        
+        if (clickedSlide === activeSlide) {
+          return;
+        }
+      
+        if (clickedIndex > activeIndex) {
+          subSlider.slideNext();
+        } else if (clickedIndex < activeIndex) {
+          subSlider.slidePrev();
+        }
+      
+        activeSlide = clickedSlide;
+      });
+    } else {
+      subSlider.off('click');
+    }
+  }
 
-  subSlider.on('click', (swiper, event) => {
-    const clickedSlide = swiper.clickedSlide;
-  
-    if (!activeSlide) {
-      activeSlide = findActiveSlide(swiper.slides);
-  
-      if (!activeSlide) {
-        return;
-      }
-    }
-    const activeIndex = swiper.slides.indexOf(activeSlide);
-    const clickedIndex = swiper.slides.indexOf(clickedSlide);
-    
-    if (clickedSlide === activeSlide) {
-      return;
-    }
-  
-    if (clickedIndex > activeIndex) {
-      subSlider.slideNext();
-    } else if (clickedIndex < activeIndex) {
-      subSlider.slidePrev();
-    }
-  
-    activeSlide = clickedSlide;
-  });
+    handleResize();
+    window.addEventListener('resize', handleResize);
 }
