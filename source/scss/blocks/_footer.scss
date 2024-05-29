@@ -23,16 +23,27 @@
     padding: 20px 0 27px;
   }
 
+  &.mode{
+    padding-bottom: clamp(28px, 2.5663vw, 30px);
+  }
+
+  &-logo{
+    @include for-mobile{
+      position: relative;
+      top: -27px;
+    }
+  }
+
   &__box{
     display: flex;
     flex-direction: column;
 
     @include for-mobile{
-      grid-gap: clamp(38px, 8.8965vw, 104px);
+      grid-gap: clamp(38px, 5.988vw, 70px);
     }
 
     @include mobile{
-      grid-gap: 38px;
+      grid-gap: 33px;
     }
   }
 
@@ -40,7 +51,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    grid-gap: 59px 20px;
+    grid-gap: 55px 20px;
 
     @include mobile{
       flex-direction: column;

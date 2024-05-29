@@ -5,14 +5,20 @@
         display: flex;
         flex-direction: column;
         grid-gap: clamp(307px, 34.5595vw, 404px);
+    
     }
 
     &__title{
         width: 100%;
-        margin-top: -65px;
+
+        .words{
+            @include for-mobile{
+                padding-right: Min(10.9495vw, 128px);
+            }
+        }
+      
         *{
             font-weight: 400;
-            font-size: clamp(30px, 6.4157vw, 75px);
             letter-spacing: -0.05em;
             text-transform: uppercase;
             text-align: justify;
@@ -21,6 +27,14 @@
             @include for-mobile{
                 line-height: 121%;
             }
+
+            @include for-ios{
+                font-size: clamp(30px, 6.4157vw, 75px);
+            }
+
+            @include ios{
+                font-size: Min(7.246vw ,30px);
+            }
         }
 
         p{
@@ -28,6 +42,21 @@
             justify-content: space-between;
         }
 
+        @include for-tablet{
+            margin-top: -65px;
+        }
+
+        @include tablet{
+            @include for-small-tablet{
+                margin-top: calc(clamp(45px, 5.859vw, 60px) * -1); 
+            }
+        }
+
+        @include small-tablet{
+            @include for-mobile{
+            margin-top: calc(clamp(30px, 6.51vw, 50px) * -1);
+            }
+        }
        
     }
 
@@ -49,9 +78,14 @@
             background-repeat: no-repeat;
             width: Min(1512px, 1512px);
             height: Min(85.6287vw, 1001px);
+            height: clamp(620px, 85.6287vw, 1001px);
             bottom: 0;
             left: 50%;
-            transform: translate(-50%, 50%);
+            transform: translate(-50%, 52%);
+        }
+
+        @include mobile{
+            grid-gap: 30px;
         }
     }
 
@@ -62,28 +96,57 @@
         align-items: flex-end;
         z-index: 1;
 
+        @include for-tablet{
+            width: 248px;
+            height: 326px;
+            padding-bottom: 30px;
+        }
+        @include tablet{
             @include for-small-tablet{
-                width: 248px;
-                height: 326px;
-                padding-bottom: 30px;
+                padding-bottom: 25px;
+               width: Min(24.219vw, 248px);
+               height: Min(31.836vw, 326px);
+            }
             }
 
             @include small-tablet{
-                padding-bottom: 17px;
+                @include for-mobile{
+                    padding-bottom: 20px;
+                    width: Min(27.474vw, 211px);
+                    height: Min(36.198vw ,278px);
+                }
+            }
+
+            @include mobile{
                 width: 211px;
                 height: 278px;
+                padding-bottom: 17px;
             }
 
         img,picture{
             rotate: 7.5deg;
             filter: grayscale(1);
 
-            @include for-small-tablet{
+            @include for-tablet{
                 width: 196px;
                 height: 254px;
             }
+
+            @include tablet{
+                @include for-small-tablet{
+                    width: Min(19.141vw ,196px);
+                    height: Min(24.805vw ,254px);
+                }
+            }
     
             @include small-tablet{
+                @include for-mobile{
+                width: Min(26.823vw, 206px);
+                height: Min(34.766vw ,267px);
+            }
+        }
+
+            @include mobile{
                 width: 206px;
                 height: 267px;
             }
@@ -100,17 +163,38 @@
 
     &__info{
         display: flex;
-        justify-content: center;
-        align-items: flex-end;
-        grid-gap: clamp(60px, 12.8315vw, 150px);
+       
+        @include for-tablet{
+            grid-gap: clamp(60px, 12.8315vw, 150px);
+        }
+
+        @include tablet{
+            grid-gap: 35px clamp(20px, 2.5663vw, 30px);
+        }
+
+        @include for-small-tablet{
+            justify-content: center;
+            align-items: flex-end;
+        }
+
+        @include small-tablet{
+            flex-direction: column;
+        }
+
         p{
-            max-width: 393px;
             line-height: 200%;
+
+            @include for-small-tablet{
+                max-width: 393px;
+            }
         }
 
         .text{
-            max-width: 343px;
             line-height: 133%;
+
+            @include for-small-tablet{
+                max-width: 343px;
+            }
         }
     }
 }

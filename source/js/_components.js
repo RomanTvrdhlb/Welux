@@ -11,7 +11,8 @@ import './components/card';
 import './components/showPass';
 import './components/preloader';
 import './components/fancybox';
-import './components/sliders';
+// import './components/sliders';
+import './components/global';
 
 
 

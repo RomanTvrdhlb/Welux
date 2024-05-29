@@ -24,45 +24,98 @@
 
   &__wrapper{
     display: grid;
-    grid-template-columns: 1fr 377px;
-    grid-gap: 0 20px;
+
+    @include for-small-tablet{
+      grid-template-columns: 1fr 377px;
+      grid-gap: 0 20px;
+    }
+
+    @include small-tablet{
+      grid-gap: 35px;
+      grid-template-columns: 100%;
+    }
 
     p{
       line-height: 200%;
-      margin-top: 61px;
+      
+      @include for-small-tablet{
+        margin-top: 61px;
+      }
     }
 
     .contacts{
-      margin-top: -8px;
+      @include for-small-tablet{
+        margin-top: -35px;
+      }
+
+      @include small-tablet{
+        margin-top: 25px;
+      }
     }
   }
 
   &__content{
     display: grid;
-    grid-template-columns: 1fr 483px;
     justify-items: end;
-    grid-gap: clamp(30px, 5.2181vw, 61px) clamp(30px, 4.2772vw, 50px);
+    grid-gap: clamp(30px, 6.4157vw, 75px) clamp(30px, 4.2772vw, 50px);
     padding-bottom: clamp(30px, 5.2181vw, 61px);
+
+
+    @include for-tablet{
+      grid-template-columns: 1fr 483px;
+    }
+
+    @include tablet{
+      @include for-small-tablet{
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    p[data-clip-item] {
+      overflow: hidden;
+
+      @include mobile {
+        max-height: 170px;
+        min-height: 170px;
+      }
+    }
+  }
+
+  @include small-tablet{
+    grid-template-columns: 100%;
+  }
 
     @include mobile{
       padding-bottom: 100px;
     }
 
     .title{
-      grid-column: span 2;
       justify-self: start;
+      @include for-small-tablet{
+        grid-column: span 2;
+      }
     }
 
     .text{
-      max-width: 377px;
       font-size: clamp(20px, 1.7964vw, 21px);
 
       @include small-tablet{
         line-height: 140%;
       }
 
+      @include for-mobile{
+        max-width: 377px;
+      }
+
       &:nth-child(3){
-        max-width: 483px;
+        @include for-small-tablet{
+          max-width: 483px;
+        }
+
+        @include small-tablet{
+          @include for-mobile{
+          max-width: 100%;
+          }
+        }
 
         @include mobile{
           margin-top: 11px;
@@ -71,6 +124,7 @@
     }
 
     .main-link{
+      margin-top: -9px;
       @include for-mobile{
         display: none;
       }
@@ -223,16 +277,13 @@
   &--about{
     margin-bottom: 0;
 
-    @include for-tablet{
-      padding-top: calc(var(--header-height) - 27px);
-    }
    
     @include for-mobile{
       padding-bottom: 113px;
     }
 
     @include mobile{
-      padding-bottom: 115px;
+      padding: calc(var(--header-height) + 20px) 0 115px;
     }
   }
 
@@ -251,7 +302,11 @@
     }
 
     @include for-tablet{
-      padding-top: calc(var(--header-height) - 27px);
+      padding-top: calc(var(--header-height) - 8px);
+    }
+
+    @include mobile{
+      padding-top: calc(var(--header-height) + 22px);
     }
   }
 }

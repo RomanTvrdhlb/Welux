@@ -109,3 +109,20 @@
     grid-gap: clamp(30px, 2.994vw, 35px);
   }
 }
+
+
+.main-link{
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 175%;
+  text-transform: uppercase;
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+  color: rgba(var(--cl-c),1.0);
+  transition: all .4s;
+
+  &:hover{
+    opacity: .6;
+  }
+}

@@ -6,6 +6,9 @@ html {
   will-change: font-size;
   font-size: var(--rem-function);
 
+
+
+
 }
 
 body {
@@ -26,6 +29,10 @@ body {
   -webkit-text-size-adjust: 100%;
   // for text resize
 
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
 
   &.fixed-body {
     position: fixed;
@@ -40,6 +47,7 @@ body {
 main {
   min-width: 0 !important;
   counter-reset: section;
+  flex-grow: 1;
 
   &.no-padding {
     padding: 0;
