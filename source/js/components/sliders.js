@@ -1,8 +1,33 @@
 import Swiper from "swiper";
 import vars from "../_vars";
-import { Pagination, Scrollbar, Thumbs, EffectFade } from "swiper/modules";
+import { Pagination, Scrollbar, Thumbs, EffectFade, Autoplay } from "swiper/modules";
 
-const { parentSliders } = vars;
+const { parentSliders, mainSliders } = vars;
+
+mainSliders && mainSliders.forEach(function(slider){
+  const swiper = new Swiper(slider,
+    {
+      modules: [Autoplay],
+      spaceBetween: 20,
+      slidesPerView: 1,
+      loop: true,
+      speed: 1500,
+      observer: true,
+      observeParents: true,
+      autoplay: {
+        delay: 3000,
+      },
+      breakpoints:{
+        320:{
+          spaceBetween: 15,
+        },
+        576:{
+          spaceBetween: 20,
+        },
+      },
+    }
+  );
+})
 
 if (parentSliders) {
   const mainSwiper = parentSliders.querySelector(".bg-slider");
@@ -39,7 +64,7 @@ if (parentSliders) {
     return slides.find(slide => slide.classList.contains('swiper-slide-thumb-active'));
   }
 
-  var subSlider = new Swiper(
+  const subSlider = new Swiper(
     subSwiper.querySelector(".sub-slider__container"),
     {
       modules: [Thumbs],

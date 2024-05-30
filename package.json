@@ -58,6 +58,7 @@
     "@fancyapps/ui": "^5.0.36",
     "@popperjs/core": "^2.11.8",
     "aos": "^2.3.4",
+    "gsap": "^3.12.5",
     "gulp-rename": "^2.0.0",
     "gulp-to-ico": "^1.0.0",
     "inputmask": "^5.0.7",

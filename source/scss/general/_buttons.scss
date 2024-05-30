@@ -63,3 +63,15 @@
     opacity: .4;
   }
 }
+
+.wrapper{
+  overflow: hidden;
+  button{
+    transition: all .1s linear;
+    position: relative;
+    bottom: -60px;
+  }
+  span{
+    opacity: 0;
+  }
+}

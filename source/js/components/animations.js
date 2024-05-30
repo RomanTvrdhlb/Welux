@@ -1,90 +1,169 @@
-import lottie from 'lottie-web';
+import { gsap } from "gsap";
+import vars from '../_vars';
+import { CSSRulePlugin } from "gsap/CSSRulePlugin";
+// import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SplitText } from "gsap/SplitText";
 
-const platformData = require('./../platfrom.json');
-const moreData = require('./../more.json');
-const securityData = require('./../security.json');
-const aprData = require('./../apr.json');
-const supportData = require('./../support.json');
-const riskData = require('./../risk.json');
+gsap.registerPlugin(CSSRulePlugin);
+gsap.registerPlugin(SplitText);
+// gsap.registerPlugin(ScrollTrigger);
 
+const { header } = vars;
+const firstSection = document.querySelector('[data-gallery]');
 
-const platformEl = document.getElementById('platform');
-const moreEl = document.getElementById('more');
-const securityEl = document.getElementById('security');
-const aprEl = document.getElementById('apr');
-const supportEl = document.getElementById('support');
-const riskEl = document.getElementById('risk');
+if (header) {
+  const logo = document.querySelector(".header__inner .logo");
+  const nav = document.querySelector(".main-nav");
+  const btns = document.querySelector(".header__btns");
 
-const platformOptions = {
-  renderer: 'svg',
-  loop: true,
-  autoplay: true,
-  animationData: platformData,
-};
-
-const moreOptions = {
-  renderer: 'svg',
-  loop: true,
-  autoplay: true,
-  animationData: moreData,
-};
-
-const securityOptions = {
-  renderer: 'svg',
-  loop: true,
-  autoplay: true,
-  animationData: securityData,
-};
-
-const aprOptions = {
-  renderer: 'svg',
-  loop: true,
-  autoplay: true,
-  animationData: aprData,
-};
-
-const supportOptions = {
-  renderer: 'svg',
-  loop: true,
-  autoplay: true,
-  animationData: supportData,
-};
-
-const riskOptions = {
-  renderer: 'svg',
-  loop: true,
-  autoplay: true,
-  animationData: riskData,
-};
-
-
-function initAnimation(options, container) {
-  if (options && container) {
-    options.container = container;
-    lottie.loadAnimation(options);
-  }
+  gsap.timeline()
+    .to(logo, {
+      opacity: 1,
+      duration: 2,
+    })
+    .to([nav, btns], {
+      opacity: 1,
+      duration: 3,
+    }, "-=1.5");
 }
 
-initAnimation(platformOptions, platformEl);
-initAnimation(moreOptions, moreEl);
-initAnimation(securityOptions, securityEl);
-initAnimation(aprOptions, aprEl);
-initAnimation(supportOptions, supportEl);
-initAnimation(riskOptions, riskEl);
+if (firstSection) {
+  const tl = gsap.timeline();
 
+  const title = firstSection.querySelector(".title");
+  const titleSplit = new SplitText(title, {
+    type: "lines, chars",
+    linesClass: "line",
+  });
 
-const giftElements = document.querySelectorAll('.gift');
+  const subtitle = firstSection.querySelector(".subtitle");
+  const subtitleSplit = new SplitText(subtitle, {
+    type: "lines, words",
+    linesClass: "line",
+  });
 
-giftElements && giftElements.forEach(function(gift){
-  playGiftAnimation(gift);
-  setInterval(function() {
-    playGiftAnimation(gift);
-  }, 4000);
-});
+  const mainBtn = firstSection.querySelector('.first-section__inner .main-btn'),
+        mainBtnText = mainBtn.querySelector('span');
 
-function playGiftAnimation(el) {
-  el.classList.add('animate-gift');
-  setTimeout(() => {
-    el.classList.remove('animate-gift');
-  }, 2000);
+  const aside = firstSection.querySelector('.first-section__aside'),
+        asideText = firstSection.querySelector('.first-section__text'),
+        asideLine = CSSRulePlugin.getRule(".first-section__aside::before"),
+        socialItems = Array.from(aside.querySelectorAll('.social__item'));
+
+  const bar = firstSection.querySelector('.custom-bar'),
+        barBg = bar.querySelector('.custom-bar__bg'),
+        barCurrent = CSSRulePlugin.getRule(".custom-bar::before"),
+        barTotal = CSSRulePlugin.getRule(".custom-bar::after");
+
+  const slider = firstSection.querySelector('.sub-slider'),
+        sliderLine = CSSRulePlugin.getRule(".sub-slider::before"),
+        sliderItems = Array.from(slider.querySelectorAll('.sub-slider__slide')),
+        sliderCount = slider.querySelector('.count'),
+        sliderTotal = slider.querySelector('.total'),
+        bullets = Array.from(slider.querySelectorAll('.swiper-pagination-bullet'));
+
+  tl.from(titleSplit.lines, {
+    opacity: 0,
+    y: 100,
+    duration: 0.5,
+  }, 0)
+  .from(titleSplit.chars, {
+    opacity: 0,
+    y: 100,
+    duration: 0.5,
+    stagger: 0.05,
+  }, 0)
+  .from(subtitleSplit.words, {
+    opacity: 0,
+    y: 100,
+    duration: 0.6,
+    stagger: 0.05,
+  }, 0.6)
+  .to(mainBtn, {
+    bottom: 0,
+    duration: 0.3,
+  }, '-=1.2')
+  .to(mainBtnText, {
+    opacity: 1,
+    duration: 1,
+  }, '-=0.8');
+
+  socialItems.forEach((item, index) => {
+    gsap.timeline({ delay: .7 })
+      .from(item, {
+        opacity: 0,
+        duration: 1.4,
+        ease: 'none',
+        delay: 0.3 * index,
+      })
+      .to(asideLine, {
+        cssRule: {
+          height: 242,
+        },
+        duration: 1,
+      }, '-=1.5')
+      .to(asideText, {
+        opacity: 1,
+        duration: 2,
+        ease: 'none',
+      }, '-=0.7');
+  });
+
+  gsap.timeline({ delay: .7 })
+  .to(barBg,{
+    width: '100%',
+    duration: 1,
+  })
+  .to(bar.querySelector('.swiper-scrollbar-drag'),{
+    opacity: 1,
+    duration: 1,
+  }, '-=0.7')
+  .from(barCurrent, {
+    cssRule: {
+      opacity: 0,
+    },
+    duration: 2,
+  }, '-=0.9')
+  .from(barTotal, {
+    cssRule: {
+      opacity: 0,
+    },
+    duration: 2,
+  }, '-=1.5')
+
+  sliderItems.forEach((item, index) => {
+    gsap.timeline({ delay: .9 })
+      .to(sliderLine, {
+          cssRule: {
+            height: 106,
+          },
+          duration: .6,
+          ease: 'none',
+      })
+      .to(item, {
+        translateY: 0,
+        duration: .4,
+        ease: 'none',
+        delay: 0.3 * index,
+      }, '-=0.5')
+      .to(sliderCount,{
+        opacity: 1,
+        duration: 1.5,
+        ease: 'none',
+      }, '-=0.1')
+      .to(sliderTotal,{
+        opacity: 1,
+        ease: 'none',
+        duration: 1.5,
+      }, '-=1')
+  });
+  bullets.forEach((item, index) => {
+    gsap.to(item, {
+      opacity: 1,
+      duration: .3,
+      ease: 'none',
+      delay: 0.3 * index,
+    }, 1.5)
+  });
 }
+

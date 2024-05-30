@@ -131,6 +131,18 @@
     }
   }
 
+  .main-slider{
+    margin-top: 15px;
+    height: clamp(341px, 58.8537vw, 688px);
+
+    .swiper-slide{
+      img,
+      picture {
+        height: clamp(341px, 58.8537vw, 688px);
+      }
+    }
+  }
+
   &__picture {
     width: clamp(311px, 28.657vw, 335px);
     height: clamp(383px, 38.2378vw, 447px);

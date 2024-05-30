@@ -9,7 +9,8 @@ export default {
   burger: document.querySelectorAll('.burger'),
   mobileMenu: document.querySelector('.mobile'),
   overlay: document.querySelector('[data-overlay]'),
-  parentSliders: document.querySelector('[data-gallery]')
+  parentSliders: document.querySelector('[data-gallery]'),
+  mainSliders: document.querySelectorAll('.main-slider'),
 }
 
 

@@ -1,0 +1,16 @@
+.main-slider{
+    width: 100%;
+    display: flex;
+    height: clamp(380px, 51.8392vw, 606px);
+
+    .swiper-slide{
+        cursor: grab;
+
+        img,
+        picture {
+          width: 100%;
+          object-position: bottom center;
+          height: clamp(380px, 51.8392vw, 606px);
+        }
+      }
+}

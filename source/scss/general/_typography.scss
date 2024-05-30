@@ -168,17 +168,25 @@
 
 .custom-bar{
     height: 1px;
-    background-color: rgba(var(--bg-a),.3);
+    
     width: 242px;
     display: flex;
     align-items: flex-end;
     z-index: 10;
     position: absolute;
-  
     transform: translate(45%, 100%) rotate(-90deg);
+
+    &__bg{
+      position: absolute;
+      height: 1px;
+      width: 0;
+      background-color: rgba(var(--bg-a),.3);
+      z-index: -1;
+    }
 
     .swiper-scrollbar{
         &-drag{
+          opacity: 0;
             background-color: rgba(var(--bg-a),1.0);
             height: 2px;
         }

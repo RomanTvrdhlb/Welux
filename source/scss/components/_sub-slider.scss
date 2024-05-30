@@ -13,7 +13,7 @@
     left: -20px;
     content: "";
     position: absolute;
-    height: 106px;
+    height: 0;
     width: 1px;
     background-color: rgba(var(--bg-a), 1);
     pointer-events: none;
@@ -36,6 +36,7 @@
   &__slide {
     cursor: pointer;
     height: 106px;
+    transform: translateY(100%);
 
     img,
     picture {
@@ -61,6 +62,10 @@
     @include mobile {
       top: -39px;
     }
+
+    .count, .total{
+      opacity: 0;
+    }
   }
 
   .custom-pagination {
@@ -68,6 +73,10 @@
     top: -19px;
     z-index: 10;
     transform: translateY(-100%);
+
+    .swiper-pagination-bullet{
+      opacity: 0;
+    }
 
     @include for-small-tablet {
       left: 0;

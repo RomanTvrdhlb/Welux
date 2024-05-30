@@ -69,6 +69,12 @@
       opacity: .4;
     }
   }
+
+  @include for-tablet{
+    .main-nav, .header__btns, .header__inner .logo{
+      opacity: 0;
+    }
+  }
 }
 
 .burger {

@@ -199,9 +199,10 @@
     &::before{
       background-color:  rgba(var(--bg-a),.3);
       width: 1px;
-      height: 242px;
+      height: 0;
       display: block;
       content: '';
+
 
       
       @media (max-width: (1280px)) {
@@ -227,6 +228,7 @@
       top: -60px;
       left: 50%;
       white-space: nowrap;
+      opacity: 0;
 
       @media (max-width: (1280px)) {
       display: none;
