@@ -1,22 +1,25 @@
 import { gsap } from "gsap";
 import vars from '../_vars';
 import { CSSRulePlugin } from "gsap/CSSRulePlugin";
-// import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
 
 gsap.registerPlugin(CSSRulePlugin);
 gsap.registerPlugin(SplitText);
-// gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger);
 
-const { header } = vars;
+const { header, footer } = vars;
 const firstSection = document.querySelector('[data-gallery]');
+const aboutSection = document.querySelector('[data-about]');
+const infoSection = document.querySelector('[data-info]');
+const socialSection = document.querySelector('[data-social]');
 
 if (header) {
   const logo = document.querySelector(".header__inner .logo");
   const nav = document.querySelector(".main-nav");
   const btns = document.querySelector(".header__btns");
 
-  gsap.timeline()
+  gsap.timeline({ delay: .5 })
     .to(logo, {
       opacity: 1,
       duration: 2,
@@ -53,7 +56,8 @@ if (firstSection) {
   const bar = firstSection.querySelector('.custom-bar'),
         barBg = bar.querySelector('.custom-bar__bg'),
         barCurrent = CSSRulePlugin.getRule(".custom-bar::before"),
-        barTotal = CSSRulePlugin.getRule(".custom-bar::after");
+        barTotal = CSSRulePlugin.getRule(".custom-bar::after"),
+        barDrag = bar.querySelector('.swiper-scrollbar-drag');
 
   const slider = firstSection.querySelector('.sub-slider'),
         sliderLine = CSSRulePlugin.getRule(".sub-slider::before"),
@@ -114,7 +118,7 @@ if (firstSection) {
     width: '100%',
     duration: 1,
   })
-  .to(bar.querySelector('.swiper-scrollbar-drag'),{
+  .to(barDrag,{
     opacity: 1,
     duration: 1,
   }, '-=0.7')
@@ -167,3 +171,357 @@ if (firstSection) {
   });
 }
 
+if(aboutSection){
+  //-----main-top
+  const logo = aboutSection.querySelector('.main-top__logo'),
+        title = aboutSection.querySelector('.title'),
+        mainTop = aboutSection.querySelector('.main-top');
+       
+  const titleSplit = new SplitText(title, {
+          type: "lines, chars",
+          linesClass: "line",
+        });
+
+  //-----cards
+  const cards = aboutSection.querySelector('.about-card'), /////---not use
+        cardBefore = CSSRulePlugin.getRule(".about-card__title::before"),
+        cardAfter = CSSRulePlugin.getRule(".about-card__title::after"),
+        cardTitles = aboutSection.querySelectorAll('.about-card__title'),
+        cardTexts = aboutSection.querySelectorAll('.about-card p'),
+        cardImages = Array.from(aboutSection.querySelectorAll('.about-card__image')),
+        cardCounts = Array.from(aboutSection.querySelectorAll('.about-card__count'));
+
+  const cardTextsSplit = Array.from(cardTexts).map((cardText) => {
+          return new SplitText(cardText, {
+            type: "lines, words",
+            linesClass: "line",
+        });
+  });
+
+  const cardTitlesSplit = Array.from(cardTitles).map((cardTitle) => {
+    return new SplitText(cardTitle, { type: "chars" });
+  });      
+
+  const  timeLine = gsap.timeline({
+          scrollTrigger: {
+          trigger: aboutSection,
+          start: "top 60%",
+          toggleActions: "play none none none",
+          onEnter: () => {
+            setTimeout(() => {
+              mainTop.classList.add('animate');
+            }, 900);
+          },
+          },
+  });
+
+  //----animation-main-top
+        timeLine.from(titleSplit.lines, {
+          opacity: 0,
+          y: 100,
+          duration: 0.5,
+        }, 0)
+        .from(titleSplit.chars, {
+          opacity: 0,
+          y: 100,
+          duration: 0.5,
+          stagger: 0.05,
+        }, 0)
+        .from(logo, {
+          opacity: 0,
+          duration: 0.5,
+          ease: 'none'
+        }, '-=0.4')
+
+  //----animation-card     
+
+  cardTextsSplit.forEach((textSplit) => {
+    textSplit.lines.forEach((line, index) => {
+      const lineWords = line.querySelectorAll('.line > div');
+      timeLine.from(
+        lineWords,
+        {
+          y: 100,
+          opacity: 0,
+          duration: 1,
+          stagger: 0.1,
+        },
+        index * 0.3
+      );
+    });
+  });
+
+  timeLine.from(cardBefore, {
+    cssRule: {
+      opacity: 0,
+      y: 50,
+    },
+    duration: 1,
+    stagger: 0.2,
+  }, .1);
+  
+  timeLine.from(cardAfter, {
+    cssRule: {
+      opacity: 0,
+      y: 50,
+    },
+    duration: 1,
+    stagger: 0.2,
+  }, .2);
+  
+  cardTitlesSplit.forEach((textSplit, index) => {
+    timeLine.from(textSplit.chars, {
+      y: 100,
+      opacity: 0,
+      duration: .8,
+      stagger: 0.1,
+    }, index * 0.3);
+  });
+
+  cardImages.forEach((item, index) => {
+    timeLine.from(item, {
+        y: 100,
+        opacity: 0,
+        duration: .6,
+        delay: 0.3 * index,
+      }, .9)
+  });
+
+  cardCounts.forEach((item, index) => {
+    timeLine.from(item, {
+        y: -50,
+        opacity: 0,
+        duration: .6,
+        delay: 0.4 * index,
+      }, 1)
+  });
+}
+
+if(infoSection){
+  //-----main-top
+  const logo = infoSection.querySelector('.main-top__logo'),
+        title = infoSection.querySelector('.title'),
+        mainTop = infoSection.querySelector('.main-top'),
+        sliderItems = Array.from(infoSection.querySelectorAll('.swiper-slide'));
+       
+  const titleSplit = new SplitText(title, {
+          type: "lines, chars",
+          linesClass: "line",
+        });
+
+  const  timeLine = gsap.timeline({
+          scrollTrigger: {
+          trigger: infoSection,
+          start: "top 60%",
+          toggleActions: "play none none none",
+          onEnter: () => {
+            setTimeout(() => {
+              mainTop.classList.add('animate');
+            }, 800);
+          },
+          },
+  });
+
+  //----animation-main-top
+        timeLine.from(titleSplit.lines, {
+          opacity: 0,
+          y: 100,
+          duration: 0.5,
+        }, 0)
+        .from(titleSplit.chars, {
+          opacity: 0,
+          y: 100,
+          duration: 0.5,
+          stagger: 0.05,
+        }, 0)
+        .from(logo, {
+          opacity: 0,
+          duration: 0.5,
+          ease: 'none'
+        }, '-=0.4')
+       
+        sliderItems.forEach((item, index) => {
+          timeLine.to(item, {
+              translateY: 0,
+              opacity: 1,
+              duration: .7,
+              ease: 'none',
+              delay: 0.3 * index,
+            }, .3)
+        });
+ 
+}
+
+if(socialSection){
+  //-----main-top
+  const logo = socialSection.querySelector('.main-top__logo'),
+        title = socialSection.querySelector('.title'),
+        mainTop = socialSection.querySelector('.main-top'),
+        socialItems = Array.from(socialSection.querySelectorAll('.social__link')),
+        socialImage = socialSection.querySelector('.default-section__user'),
+        text = socialSection.querySelector('.default-section__info .text'),
+        infoText = socialSection.querySelector('.default-section__info p:not([class])');
+
+        const textSplit = new SplitText(text, {
+          type: "lines, words",
+          linesClass: "line",
+        });
+
+        const infoSplit = new SplitText(infoText, {
+          type: "lines, words",
+          linesClass: "line",
+        });
+       
+        const titleSplit = new SplitText(title, {
+                type: "lines, chars",
+                linesClass: "line",
+              });
+
+        const timeLine = gsap.timeline({
+                scrollTrigger: {
+                trigger: socialSection,
+                start: "top 60%",
+                toggleActions: "play none none none",
+                onEnter: () => {
+                  setTimeout(() => {
+                    mainTop.classList.add('animate');
+                  }, 800);
+                },
+                },
+        });
+
+  //----animation-main-top
+        timeLine.from(titleSplit.lines, {
+          opacity: 0,
+          y: 100,
+          duration: 0.5,
+        }, 0)
+        .from(titleSplit.chars, {
+          opacity: 0,
+          y: 100,
+          duration: 0.5,
+          stagger: 0.05,
+        }, 0)
+        .from(logo, {
+          opacity: 0,
+          duration: 0.5,
+          ease: 'none'
+        }, '-=0.4')
+       
+        socialItems.forEach((item, index) => {
+          timeLine.from(item, {
+            opacity: 0,
+            duration: .3,
+            ease: 'none',
+            delay: 0.3 * index,
+          }, .5)
+        });
+
+        timeLine.from(socialImage, {
+          opacity: 0,
+          y:100,
+          duration: .9
+        }, .4);
+
+        textSplit.lines.forEach((line, index) => {
+            const lineWords = line.querySelectorAll('.line > div');
+            timeLine.from(
+              lineWords,
+              {
+                y: 100,
+                opacity: 0,
+                duration: .8,
+                stagger: 0.1,
+              },
+              index * 0.3
+            );
+        }, 1.4);
+       
+        infoSplit.lines.forEach((line, index) => {
+          const lineWords = line.querySelectorAll('.line > div');
+          timeLine.from(
+            lineWords,
+            {
+              y: 100,
+              opacity: 0,
+              duration: .8,
+              stagger: 0.1,
+            },
+            0.5, index * 0.3
+          );
+      },);
+}
+
+if (footer) {
+ 
+  const footerLogo = footer.querySelector(".footer-logo"),
+        footerText = footer.querySelector(".footer__copyright"),
+        footerTitle = footer.querySelector(".title"),
+        footerLinks = Array.from(footer.querySelectorAll('.main-nav__item')),
+        footerSocials = Array.from(footer.querySelectorAll(".footer__social li"));
+        
+
+  const titleSplit = new SplitText(footerTitle, {
+        type: "lines, chars",
+        linesClass: "line",
+    });
+  
+    let tl;
+
+    if (firstSection) {
+      tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: footer,
+          start: "top 80%",
+          toggleActions: "play none none none",
+          onEnter: () => {
+            setTimeout(() => {
+              footerTitle.classList.add('animate');
+            }, 400);
+          },
+        },
+      });
+    } else {
+      tl = gsap.timeline();
+      setTimeout(() => {
+        footerTitle.classList.add('animate');
+      }, 400);
+    }
+    
+    tl.from(footerLogo, {
+      opacity: 0,
+      y: 50,
+      duration: 1,
+    })
+    .from(titleSplit.chars, {
+      opacity: 0,
+      y: 100,
+      duration: 0.5,
+      stagger: 0.05,
+    }, 0)
+
+    .from(footerText,{
+      opacity:0,
+      x: 50,
+      duration: .8,
+    }, .8)
+
+    footerLinks.forEach((item, index) => {
+      tl.from(item, {
+        y: 50,
+        opacity: 0,
+        duration: .8,
+        ease: 'none',
+        delay: 0.3 * index,
+      }, 0.1)
+    });
+
+    footerSocials.forEach((item, index) => {
+      tl.from(item, {
+        opacity: 0,
+        duration: .8,
+        ease: 'none',
+        delay: 0.3 * index,
+      }, 0.2)
+    });
+}

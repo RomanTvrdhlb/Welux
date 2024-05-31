@@ -309,3 +309,12 @@
     }
   }
 }
+
+[data-info]{
+  .main-slider{
+    .swiper-slide{
+      opacity: 0;
+      transform: translateY(100%);
+    }
+  }
+}

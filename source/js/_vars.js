@@ -6,6 +6,7 @@ export default {
   htmlEl: document.documentElement,
   bodyEl: document.body,
   header: document.querySelector("header"),
+  footer: document.querySelector("footer"),
   burger: document.querySelectorAll('.burger'),
   mobileMenu: document.querySelector('.mobile'),
   overlay: document.querySelector('[data-overlay]'),

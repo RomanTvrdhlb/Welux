@@ -8,6 +8,7 @@
 
 
     &__title{
+        overflow: hidden;
         font-family: var(--second-family);
         display: inline-flex;
         padding-left: 3px;
@@ -26,7 +27,7 @@
     }  
 
     &__bottom{
-    
+        overflow: hidden;
         display: flex;
         align-items: flex-end;
         position: relative;
@@ -53,6 +54,7 @@
     }
 
     &__count{
+        z-index: 5;
         position: absolute;
         right: 0;
         top: 0;

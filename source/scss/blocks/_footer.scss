@@ -75,6 +75,7 @@
       justify-content: space-between;
     }
 
+
     li a{
       font-family: var(--font-family);
       font-weight: 400;
@@ -114,38 +115,61 @@
   }
 
   .title{
+    display: inline-flex;
+    grid-gap: 5px;
+    position: relative;
+
+    &::after{
+      content: '';
+      position: absolute;
+      bottom: 1px;
+      left: 0;
+      height: clamp(2px, 0.293vw, 3px);
+      background-color: rgba(var(--bg-a),1.0);
+      width: 0;
+      pointer-events: none;
+      transition: all .8s;
+
+      @include for-tablet{
+       opacity: 0;
+       visibility: hidden;
+      }
+    }
+
+    &.animate{
+      &::after{
+        width: 100%;
+      }
+    }
+
     @include for-tablet{
-      transform: translate(-60%, -25%);
+      transform: translate(-60%, -18%);
     }
 
     @include tablet{
       @include for-mobile{
-        transform: translate(-50%, -20%);
+        transform: translate(-50%, -10%);
       }
-  
-      text-transform: uppercase;
-      text-decoration: underline;
-      text-decoration-skip-ink: none;
-      text-underline-offset: 6px;
     }
 
     @include for-mobile{
       top: 50%;
       left: 50%;
       font-size: clamp(26px, 4.7049vw, 55px);
-      line-height: 182%;
+      line-height: 115%;
       position: absolute;
     }
 
     @include mobile{
-      line-height: 312%;
-      margin: 2px 0 3px;
+      margin: 33px 0 32px;
       order: 3;
       font-size: 32px;
     }
   }
 
   .main-nav{
+    overflow: hidden;
+    padding-bottom: 2px;
     @include mobile{
       width: 100%;
       @include for-ios{
@@ -157,7 +181,6 @@
       justify-content: space-between;
     }
   }
- 
 }
 
 
