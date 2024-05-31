@@ -13,6 +13,7 @@
         width: 100%;
         aspect-ratio: 1;
         display: flex;
+        overflow: hidden;
         filter: grayscale(100%);
 
         img,picture{

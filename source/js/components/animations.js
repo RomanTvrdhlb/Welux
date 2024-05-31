@@ -13,6 +13,9 @@ const firstSection = document.querySelector('[data-gallery]');
 const aboutSection = document.querySelector('[data-about]');
 const infoSection = document.querySelector('[data-info]');
 const socialSection = document.querySelector('[data-social]');
+const contactsSection = document.querySelector('[data-contacts]');
+const companySection = document.querySelector('[data-company]');
+const teamSection = document.querySelector('[data-team]');
 
 if (header) {
   const logo = document.querySelector(".header__inner .logo");
@@ -360,8 +363,10 @@ if(socialSection){
         socialItems = Array.from(socialSection.querySelectorAll('.social__link')),
         socialImage = socialSection.querySelector('.default-section__user'),
         text = socialSection.querySelector('.default-section__info .text'),
-        infoText = socialSection.querySelector('.default-section__info p:not([class])');
-
+        infoText = socialSection.querySelector('.default-section__info p:not([class])'),
+        cube = CSSRulePlugin.getRule(".default-section--about::before");
+        
+        
         const textSplit = new SplitText(text, {
           type: "lines, words",
           linesClass: "line",
@@ -450,6 +455,223 @@ if(socialSection){
             0.5, index * 0.3
           );
       },);
+}
+
+if(contactsSection){
+  const title = contactsSection.querySelector('.title'),
+  text = contactsSection.querySelector('.first-section__wrapper p'),
+  contactTitles = Array.from(contactsSection.querySelectorAll(".contacts__title")),
+  contactLinks = Array.from(contactsSection.querySelectorAll(".contacts__link"));
+
+  const titleSplit = new SplitText(title, {
+    type: "lines, chars",
+    linesClass: "line",
+  });
+
+  const textSplit = new SplitText(text, {
+    type: "lines, words",
+    linesClass: "line",
+  });
+
+  let tl = gsap.timeline();
+
+  tl.from(titleSplit.lines, {
+    opacity: 0,
+    y: 100,
+    duration: 0.5,
+  }, 0)
+  .from(titleSplit.chars, {
+    opacity: 0,
+    y: 100,
+    duration: 0.5,
+    stagger: 0.05,
+  }, 0)
+  .from(textSplit.lines, {
+    opacity:0,
+    y:100,
+    duration:0.5
+  }, '-=1.8')
+  .from(textSplit.words, {
+    opacity: 0,
+    y: 100,
+    duration: 0.5,
+    stagger: 0.02,
+  }, '-=0.5')
+    
+  contactTitles.forEach((item, index) => {
+    const split = new SplitText(item, {
+      type: "lines, chars",
+      linesClass: "line",
+    });
+
+    gsap.timeline({delay: 0.5}).from(split.chars, {
+      opacity: 0,
+      y: 100,
+      duration: 0.2,
+      stagger: 0.02,
+      delay: 0.3 * index,
+    })
+  });
+
+  contactLinks.forEach((item, index) => {
+    const split = new SplitText(item, {
+      type: "lines, chars",
+      linesClass: "line",
+    });
+  
+    const tl = gsap.timeline({ delay: 0.9 });
+
+    tl.from(split.lines, {
+      opacity: 0,
+      y: 50,
+      duration: 0.5,
+      stagger: 0.1,
+      delay: 0.3 * index,
+    });
+  
+    tl.from(split.chars, {
+      opacity: 0,
+      y: 100,
+      duration: 0.2,
+      stagger: 0.01,
+      delay: 0.3 * index,
+    }, 0);
+  });
+}
+
+if(companySection){
+  const title = companySection.querySelector('.title'),
+        texts = Array.from(companySection.querySelectorAll(".first-section__content .text")),
+        slider = companySection.querySelector('.main-slider');
+  
+  const titleSplit = new SplitText(title, {
+    type: "lines, chars",
+    linesClass: "line",
+  });
+
+  let tl = gsap.timeline();
+
+  tl.from(titleSplit.lines, {
+    opacity: 0,
+    y: 100,
+    duration: 0.5,
+  }, 0)
+  .from(titleSplit.chars, {
+    opacity: 0,
+    y: 100,
+    duration: 0.5,
+    stagger: 0.05,
+  }, 0)
+    
+  texts.forEach((item, index) => {
+    const split = new SplitText(item, {
+      type: "lines, chars",
+      linesClass: "line",
+    });
+
+    gsap.timeline({delay: 0.3}).from(split.chars, {
+      opacity: 0,
+      y: 100,
+      duration: 0.2,
+      stagger: 0.01,
+      delay: .5 * index,
+    })
+  });
+
+  const timeLine = gsap.timeline({
+      scrollTrigger: {
+      trigger: slider,
+      start: 'top 95%',
+      toggleActions: "play none none none",
+      },
+  });
+
+  timeLine.from(slider, {
+      translateY: 100,
+      opacity: 0,
+      duration: .7,
+      ease: 'none',
+  })
+}
+
+if(teamSection){
+  //-----main-top
+  const title = teamSection.querySelector('.title'),
+        mainTop = teamSection.querySelector('.main-top');
+       
+  const titleSplit = new SplitText(title, {
+          type: "lines, chars",
+          linesClass: "line",
+        });
+
+  //-----cards
+  const cardTitles = teamSection.querySelectorAll('.team-card .subtitle'),
+        cardTexts = teamSection.querySelectorAll('.team-card__info'),
+        cardImages = Array.from(teamSection.querySelectorAll('.team-card__image picture'));
+
+
+  const cardTextsSplit = Array.from(cardTexts).map((cardText) => {
+          return new SplitText(cardText, {
+            type: "lines, words",
+            linesClass: "line",
+        });
+  });
+
+  const cardTitlesSplit = Array.from(cardTitles).map((cardTitle) => {
+    return new SplitText(cardTitle, {
+      type: "lines, words",
+      linesClass: "line",
+    });
+  });
+
+  const  timeLine = gsap.timeline({
+          scrollTrigger: {
+          trigger: teamSection,
+          start: "top 60%",
+          toggleActions: "play none none none",
+          },
+  });
+
+  //----animation-main-top
+        timeLine.from(titleSplit.lines, {
+          opacity: 0,
+          y: 100,
+          duration: 0.5,
+        }, 0)
+        .from(titleSplit.chars, {
+          opacity: 0,
+          y: 100,
+          duration: 0.5,
+          stagger: 0.05,
+        }, 0)
+
+  //----animation-card     
+    cardImages.forEach((item, index) => {
+    timeLine.from(item, {
+        y: 100,
+        opacity: 0,
+        duration: .6,
+        delay: 0.3 * index,
+      }, .3)
+  });
+
+  cardTextsSplit.forEach((textSplit, index) => {
+    timeLine.from(textSplit.words, {
+    y: 100,
+          opacity: 0,
+          duration: 1,
+          stagger: 0.1,
+    }, 0.4, index * 0.3)
+  })
+  
+  cardTitlesSplit.forEach((textSplit, index) => {
+    timeLine.from(textSplit.words, {
+    y: 100,
+          opacity: 0,
+          duration: 1,
+          stagger: 0.1,
+    }, index * 0.3)
+  })
 }
 
 if (footer) {

@@ -38,12 +38,23 @@
     &__link{
         font-size: 21px;
         line-height: 133%;
-        text-transform: uppercase;
-        text-decoration: underline;
-        text-decoration-skip-ink: none;
         max-width: 340px;
         transition: all .4s;
+        position: relative;
+        flex-direction: column;
 
+        .line{
+            width: fit-content;
+        &::before{
+            position: absolute;
+            content: '';
+            width: 100%;
+            left: 0;
+            bottom: 1px;
+            height: 2px;
+            background-color: currentColor;
+        }
+    }
         &:hover{
             color: rgba(var(--cl-c),1.0);
         }
