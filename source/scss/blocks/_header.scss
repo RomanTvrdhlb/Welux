@@ -75,6 +75,12 @@
       opacity: 0;
     }
   }
+
+  @include tablet{
+    .logo, .burger{
+      opacity: 0;
+    }
+  }
 }
 
 .burger {

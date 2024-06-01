@@ -1,5 +1,5 @@
 .about-section {
-  padding-bottom: clamp(65px, 6.0736vw, 71px);
+  padding:clamp(80px, 9.7519vw, 114px) 0 clamp(65px, 6.0736vw, 71px);
   z-index: 1;
   overflow: hidden;
   position: relative;
@@ -22,19 +22,10 @@
     }
   }
 
-
-  &::before {
-    position: absolute;
-    background: rgba(var(--bg-c), 1);
-    z-index: -1;
-    top: 0;
-    pointer-events: none;
-    content: '';
-
+  .cube{
     @include for-laptop{
       right: calc((var(--container-width) / 4) * -1);
     }
-
 
     @include laptop{
       @include for-tablet{
@@ -49,16 +40,8 @@
      }
     }
 
-    @include for-mobile{
-      width: 50vw;
-      height: 535px;
-    }
-
     @include mobile{
       left: 41%;
-      width: 100vw;
-      height: 545px;
     }
-    
   }
 }

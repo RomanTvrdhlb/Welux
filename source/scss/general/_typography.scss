@@ -246,3 +246,21 @@
             transform: translate(48%, 100%) rotate(-90deg);
           }
 }
+
+.cube{
+  position: absolute;
+  background: rgba(var(--bg-c), 1);
+  z-index: -1;
+  top: 0;
+  pointer-events: none;
+
+  @include for-mobile{
+    width: 50vw;
+    height: 535px;
+  }
+
+  @include mobile{
+    width: 100vw;
+    height: 545px;
+  }
+}

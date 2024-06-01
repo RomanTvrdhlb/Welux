@@ -3,6 +3,7 @@ import vars from '../_vars';
 import { CSSRulePlugin } from "gsap/CSSRulePlugin";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
+import { right } from "@popperjs/core";
 
 gsap.registerPlugin(CSSRulePlugin);
 gsap.registerPlugin(SplitText);
@@ -16,11 +17,14 @@ const socialSection = document.querySelector('[data-social]');
 const contactsSection = document.querySelector('[data-contacts]');
 const companySection = document.querySelector('[data-company]');
 const teamSection = document.querySelector('[data-team]');
+const createSection = document.querySelector('[data-create]');
+const projectSection = document.querySelector('[data-project]');
 
 if (header) {
   const logo = document.querySelector(".header__inner .logo");
   const nav = document.querySelector(".main-nav");
   const btns = document.querySelector(".header__btns");
+  const burger = document.querySelector('.burger');
 
   gsap.timeline({ delay: .5 })
     .to(logo, {
@@ -29,11 +33,17 @@ if (header) {
     })
     .to([nav, btns], {
       opacity: 1,
-      duration: 3,
-    }, "-=1.5");
+      duration: 1.4,
+      ease: 'none'
+    }, "-=1.5")
+    .to(burger, {
+      opacity: 1,
+      duration: 2,
+      ease: 'none'
+    }, 0.2)
 }
 
-if (firstSection) {
+if(firstSection) {
   const tl = gsap.timeline();
 
   const title = firstSection.querySelector(".title");
@@ -175,10 +185,11 @@ if (firstSection) {
 }
 
 if(aboutSection){
-  //-----main-top
+  //-----top
   const logo = aboutSection.querySelector('.main-top__logo'),
         title = aboutSection.querySelector('.title'),
-        mainTop = aboutSection.querySelector('.main-top');
+        mainTop = aboutSection.querySelector('.main-top'),
+        cube = aboutSection.querySelector('.cube');
        
   const titleSplit = new SplitText(title, {
           type: "lines, chars",
@@ -186,12 +197,13 @@ if(aboutSection){
         });
 
   //-----cards
-  const cards = aboutSection.querySelector('.about-card'), /////---not use
+  const cards = aboutSection.querySelector('.about-card'),
         cardBefore = CSSRulePlugin.getRule(".about-card__title::before"),
         cardAfter = CSSRulePlugin.getRule(".about-card__title::after"),
         cardTitles = aboutSection.querySelectorAll('.about-card__title'),
         cardTexts = aboutSection.querySelectorAll('.about-card p'),
         cardImages = Array.from(aboutSection.querySelectorAll('.about-card__image')),
+        cardBgs = Array.from(aboutSection.querySelectorAll(".about-list__bg")),
         cardCounts = Array.from(aboutSection.querySelectorAll('.about-card__count'));
 
   const cardTextsSplit = Array.from(cardTexts).map((cardText) => {
@@ -235,6 +247,11 @@ if(aboutSection){
           duration: 0.5,
           ease: 'none'
         }, '-=0.4')
+        .from(cube,{
+          opacity:0,
+          x: 100,
+          duration: .8
+        }, 0)
 
   //----animation-card     
 
@@ -253,6 +270,8 @@ if(aboutSection){
       );
     });
   });
+
+
 
   timeLine.from(cardBefore, {
     cssRule: {
@@ -288,6 +307,14 @@ if(aboutSection){
         duration: .6,
         delay: 0.3 * index,
       }, .9)
+  });
+
+  cardBgs.forEach((item, index) => {
+    timeLine.from(item, {
+        x: -100,
+        opacity: 0,
+        duration: .8,
+      }, .25, 0.1 * index)
   });
 
   cardCounts.forEach((item, index) => {
@@ -364,7 +391,7 @@ if(socialSection){
         socialImage = socialSection.querySelector('.default-section__user'),
         text = socialSection.querySelector('.default-section__info .text'),
         infoText = socialSection.querySelector('.default-section__info p:not([class])'),
-        cube = CSSRulePlugin.getRule(".default-section--about::before");
+        cube = socialSection.querySelector(".cube");
         
         
         const textSplit = new SplitText(text, {
@@ -412,6 +439,11 @@ if(socialSection){
           duration: 0.5,
           ease: 'none'
         }, '-=0.4')
+        .from(cube,{
+          opacity:0,
+          x: 100,
+          duration: .8
+        }, 0)
        
         socialItems.forEach((item, index) => {
           timeLine.from(item, {
@@ -559,22 +591,22 @@ if(companySection){
   .from(titleSplit.chars, {
     opacity: 0,
     y: 100,
-    duration: 0.5,
+    duration: 0.4,
     stagger: 0.05,
   }, 0)
     
   texts.forEach((item, index) => {
     const split = new SplitText(item, {
-      type: "lines, chars",
+      type: "lines, words",
       linesClass: "line",
     });
 
-    gsap.timeline({delay: 0.3}).from(split.chars, {
+    gsap.timeline({delay: 0.3}).from(split.words, {
       opacity: 0,
       y: 100,
-      duration: 0.2,
+      duration: 0.6,
       stagger: 0.01,
-      delay: .5 * index,
+      delay: .2 * index,
     })
   });
 
@@ -674,25 +706,211 @@ if(teamSection){
   })
 }
 
+if(createSection){
+  const imageParent = createSection.querySelector('.info-section__image'),
+        image = createSection.querySelector('.info-section__image img'),
+        titleTexts = Array.from(createSection.querySelectorAll(".info-section__title p")),
+        bgBefore = CSSRulePlugin.getRule(".info-section__inner::before"),
+        infoBlock = createSection.querySelector(".info-section__info"),
+        text = createSection.querySelector('.info-section__info .text'),
+        infoText = createSection.querySelector('.info-section__info p:not([class])');
+        
+  const timeLine = gsap.timeline({
+          scrollTrigger: {
+          trigger: createSection,
+          start: "top 60%",
+          toggleActions: "play none none none",
+          },
+  });
+
+  const splitText = new SplitText(text, {
+        type: "lines, words",
+        linesClass: "line",
+  });
+
+  const splitInfo = new SplitText(infoText, {
+        type: 'lines, words',
+        linesClass: 'line',
+  })
+
+  //----animation-image
+  timeLine.from(imageParent, {
+          opacity: 0,
+          y: 100,
+          duration: 0.5,
+  })
+  .from(image,{
+        opacity: 0,
+        rotate: 0,
+        y: 50,
+        duration: 0.4,
+  }, '-=0.2')
+
+  //----animation-title
+  titleTexts.forEach((item, index) => {  
+  
+    const split = new SplitText(item, {
+        type: "lines, chars",
+        linesClass: "line",
+  });
+
+  const tl = gsap.timeline({
+      scrollTrigger: {
+      trigger: titleTexts,
+      start: 'top 95%',
+      toggleActions: "play none none none",
+      },
+  });
+
+  tl.from(split.chars, {
+      opacity: 0,
+      y: 50,
+      duration: 0.2,
+      stagger: 0.02,
+      delay: .2 * index,
+  })
+    .to(bgBefore, {
+      cssRule: {
+        bottom: 0,
+        opacity: 1,
+      },
+      duration: .6,
+      ease: 'none',
+  }, .8)
+  });
+
+  //----animtion-infoBlock
+  const tl = gsap.timeline({
+        scrollTrigger: {
+        trigger: infoBlock,
+        start: 'top 95%',
+        toggleActions: "play none none none",
+    },
+  });
+
+  tl.from(splitText.words,{
+      opacity: 0,
+      y: 50,
+      duration: 1,
+      stagger: 0.02,
+  })
+  .from(splitInfo.words,{
+      opacity: 0,
+      y: 50,
+      duration: 1,
+      stagger: 0.02,
+  }, '-=1.4')
+}
+
+if(projectSection){
+
+  const image = projectSection.querySelector('.default-section__picture'),
+        imageBefore = CSSRulePlugin.getRule(".default-section__picture::before"),
+        title = projectSection.querySelector('.default-section__title'),
+        text = projectSection.querySelector('.default-section__content p:not([class])'),
+        deskr = projectSection.querySelector('.default-section__text');
+
+        const titleSplit = new SplitText(title, {
+          type: "lines, words",
+          linesClass: "line",
+        });
+
+        const textSplit = new SplitText(text, {
+          type: "lines, words",
+          linesClass: "line",
+        });
+
+        const deskrSplit = new SplitText(deskr, {
+          type: "lines, words",
+          linesClass: "line",
+        });
+
+        const timeLine = gsap.timeline({
+          scrollTrigger: {
+          trigger: projectSection,
+          start: "top 60%",
+          toggleActions: "play none none none",
+          },
+        });
+
+        //----animate image
+        timeLine.from(image, {
+          opacity:0,
+          x: 50,
+          y: 50,
+          duration: 0.7,
+          ease: 'none'
+        })
+        .to(imageBefore,{
+          cssRule:{
+            x:0,
+            y:0,
+            opacity: 1,
+          },
+          duration: .4,
+          ease: 'none'
+        }, '-=0.6')
+
+        //----animate title&&text
+        timeLine.from(titleSplit.lines, {
+          opacity: 0,
+          y: 100,
+          duration: 0.2,
+          stagger: 0.05,
+        }, 0.4)
+        .from(titleSplit.words, {
+          opacity: 0,
+          y: 100,
+          duration: 0.4,
+          stagger: 0.1,
+        }, 0.3)
+
+        textSplit.lines.forEach((line, index) => {
+          const lineWords = line.querySelectorAll('.line > div');
+          timeLine.from(
+            lineWords,
+            {
+              y: 100,
+              opacity: 0,
+              duration: 0.6,
+              stagger: 0.08,
+            },
+            0.4, index * 0.2
+          );
+        });
+
+        deskrSplit.lines.forEach((line, index) => {
+          const lineWords = line.querySelectorAll('.line > div');
+          timeLine.from(
+            lineWords,
+            {
+              y: 100,
+              opacity: 0,
+              duration: 0.6,
+              stagger: 0.08,
+            },
+            0.6, index * 0.2
+          );
+        });
+}
+
 if (footer) {
- 
   const footerLogo = footer.querySelector(".footer-logo"),
         footerText = footer.querySelector(".footer__copyright"),
         footerTitle = footer.querySelector(".title"),
         footerLinks = Array.from(footer.querySelectorAll('.main-nav__item')),
         footerSocials = Array.from(footer.querySelectorAll(".footer__social li"));
         
-
   const titleSplit = new SplitText(footerTitle, {
         type: "lines, chars",
         linesClass: "line",
-    });
-  
-    let tl;
+  });
 
-    if (firstSection) {
+  let tl;
+
+  if (firstSection) {
       tl = gsap.timeline({
-        scrollTrigger: {
+          scrollTrigger: {
           trigger: footer,
           start: "top 80%",
           toggleActions: "play none none none",
@@ -703,31 +921,31 @@ if (footer) {
           },
         },
       });
-    } else {
+  } else {
       tl = gsap.timeline();
-      setTimeout(() => {
-        footerTitle.classList.add('animate');
-      }, 400);
-    }
-    
-    tl.from(footerLogo, {
-      opacity: 0,
-      y: 50,
-      duration: 1,
-    })
-    .from(titleSplit.chars, {
-      opacity: 0,
-      y: 100,
-      duration: 0.5,
-      stagger: 0.05,
-    }, 0)
+        setTimeout(() => {
+          footerTitle.classList.add('animate');
+        }, 400);
+  }
+    //----animate logo,title,text
+      tl.from(footerLogo, {
+          opacity: 0,
+          y: 50,
+          duration: 1,
+      })
+      .from(titleSplit.chars, {
+          opacity: 0,
+          y: 100,
+          duration: 0.5,
+          stagger: 0.05,
+      }, 0)
+      .from(footerText,{
+          opacity:0,
+          x: 50,
+          duration: .8,
+      }, .8)
 
-    .from(footerText,{
-      opacity:0,
-      x: 50,
-      duration: .8,
-    }, .8)
-
+    //----animate nav-links  
     footerLinks.forEach((item, index) => {
       tl.from(item, {
         y: 50,
@@ -738,6 +956,7 @@ if (footer) {
       }, 0.1)
     });
 
+    //----animate socials
     footerSocials.forEach((item, index) => {
       tl.from(item, {
         opacity: 0,
